@@ -67,14 +67,16 @@ df = pd.DataFrame(data)
 
 print(df.T)
 """
+
+
 # Load data from a JSON file
-data = pd.read_json('files/json_files/a.json', orient='records')
-data2 = pd.read_json('files/json_files/b.json', orient='records')
-data3 = pd.read_json('files/json_files/c.json', orient='records')
-data4 = pd.read_json('files/json_files/d.json', orient='records')
-data5 = pd.read_json('files/json_files/e.json', orient='records')
-data6 = pd.read_json('files/json_files/f.json', orient='records')
-data7 = pd.read_json('files/json_files/g.json', orient='records')
+data = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\a.json', orient='records')
+data2 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\b.json', orient='records')
+data3 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\c.json', orient='records')
+data4 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\d.json', orient='records')
+data5 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\e.json', orient='records')
+data6 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\f.json', orient='records')
+data7 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\g.json', orient='records')
 df = pd.concat([data, data2, data3, data4, data5, data6, data7])
 
 #print(data.head(5105))
