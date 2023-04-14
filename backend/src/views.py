@@ -26,7 +26,7 @@ def get_json():
     } )
 
 #test4 access json data
-@views.route("/datatest")
+@views.route("/datatest", methods=['GET']) #you can add the information about "method is GET"
 def get_data():
     data = request.json
     return jsonify(data)
