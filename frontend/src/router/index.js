@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router"
 import EinzelneGruppe from "@/views/EinzelneGruppe"
+import Test from "@/views/Test"
 /*
 import MehrereGruppen from "@/views/MehrereGruppen"
 import LastSequenzen from "@/views/LastSequenzen"
@@ -18,6 +19,12 @@ const routes = [
         name: "Einzelne Gruppe",
         component: EinzelneGruppe,
         alias: "/EinzelneGruppe",
+    },
+    {
+        path: "/Test",
+        name: "Test",
+        component: Test,
+        alias: "/Test",
     },
     /*
     {
