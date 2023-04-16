@@ -1,33 +1,39 @@
 <template>
-  <div>
-    <h1>My Data from Flask API:</h1>
-    <ul>
-      <li v-for="item in data" :key="item.id">
-        {{ item.name }} - {{ item.value }} <!-- Access the properties of the received data object -->
-      </li>
-    </ul>
-  </div>
+  <v-app id="inspire">
+
+
+    <v-navigation-drawer
+        v-model="drawer"
+        app
+        image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        permanent
+        theme="dark"
+      >
+        <v-list nav>
+          <v-list-item prepend-icon="mdi-home" title="Startseite" value="Startseite"></v-list-item>
+          <v-list-item prepend-icon="mdi-chart-areaspline" title="Wertevergleich" value="Wertevergleich"></v-list-item>
+          <v-list-item prepend-icon="mdi-chart-scatter-plot" title="Clustering" value="Clustering"></v-list-item>
+          <v-list-item prepend-icon="mdi-magnify" title="Anomalieerkennung" value="Anomalieerkennung"></v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+
+
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>KI-Analysetool für die Stadt Leipzig</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+      
+      <!--  -->
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-export default {
-  name: 'Test',
-  data() {
-    return {
-      data: [] // Initialize an empty array to store the received data
-    };
-  },
-  mounted() {
-    // Fetch data from Flask API endpoint using Axios or Fetch API
-    // and update the 'data' property when data is received
-    fetch('/jsontest')
-      .then(response => response.json())
-      .then(data => this.data = data)
-      .catch(error => console.error(error));
+  export default {
+    data: () => ({ drawer: null }),
   }
-}
 </script>
-
-<style scoped>
-/* Add any scoped styles for your Test.vue component */
-</style>
