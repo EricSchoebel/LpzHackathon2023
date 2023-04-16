@@ -96,7 +96,7 @@ def kmeansWithK(k, included_cols, dataframe):
     selected_cols = [col_names[i] for i, include in enumerate(included_cols) if include] # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
 
-    kmeans = KMeans(n_clusters=k, n_init='auto', init='k-means++')  # 'k-means++' selects initial centorids in a smart way
+    kmeans = KMeans(n_clusters=k, n_init='auto', init='k-means++')  # 'k-means++' selects initial centroids in a smart way
     kmeans.fit(X)
     return kmeans.labels_ #list of the labels
 
