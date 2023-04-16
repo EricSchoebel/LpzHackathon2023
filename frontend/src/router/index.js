@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router"
-import EinzelneGruppe from "@/views/EinzelneGruppe"
+// import EinzelneGruppe from "@/views/EinzelneGruppe"
 import Test from "@/views/Test"
 /*
 import MehrereGruppen from "@/views/MehrereGruppen"
@@ -14,12 +14,12 @@ const routes = [
         name: "Home",
         component: Home, //it's called "component" here but it is actually in views
     },
-    {
+  /*  {
         path: "/EinzelneGruppe",
         name: "Einzelne Gruppe",
         component: EinzelneGruppe,
         alias: "/EinzelneGruppe",
-    },
+    },  */
     {
         path: "/Test",
         name: "Test",
