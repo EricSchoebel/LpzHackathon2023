@@ -3,7 +3,12 @@ from api_services import *
 
 api_controller = Blueprint(__name__, "api_controller") #initialize blueprint
 
-@api_controller.route("/")  #API-call ; views.route because variable in line 3 is views
+@api_controller.route("/get/allData")
+def get_all_data():
+    return jsonify(testing())
+
+
+@api_controller.route("/")  #API-call ; api_controller.route because variable in line 4 is api_controller
 def home():
     return render_template("index.html")
 
