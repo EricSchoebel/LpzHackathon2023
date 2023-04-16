@@ -27,7 +27,6 @@
         type: String,
         default: 'bubble-chart'
       },
-      /*
       anfang:{
         type: String,
         default:"",
@@ -36,7 +35,6 @@
         type: String,
         default:"",
       },
-      */
       anzahl: {
         type: String,
         default: "3",
@@ -71,33 +69,55 @@
     },
     methods:{
       //aktualisiert das Diagramm
-      updateDiagramm(barCharData){
+      updateDiagramm(newData){
         let b;
         let x;
-        let idleVerbrauch = []
-        let maximalVerbrauch = []
-        let durchschnittsVerbrauch = []
+
+        let elektroautos = []
+        let altenquote = []
+        let durchschnittlicheHaushaltsgroesse = []
+        let durchschnittsalter = []
+        let jugendquote = []
+        let kitaKinder = []
+        let lebenszufriedenheitZufriedenheitsfaktor = []
+        let persoenlichesEinkommen = []
+        let straftaten = []
+        let wirtschaftlicheLageZufriedenheitsfaktor = []
+        let wohnviertelZufriedenheitsfaktor = []
+        let zukunftsaussichtZufriedenheitsfaktor = []
+
         let anzahlDia = []
-        let rechnerName = []
-        for(b in barCharData){
-          idleVerbrauch.push(barCharData[b].idleVerbrauch)
-          durchschnittsVerbrauch.push(barCharData[b].durchschnittsVerbrauch)
-          maximalVerbrauch.push(barCharData[b].maximalVerbrauch)
-          anzahlDia.push(barCharData[b].einfaerbung)
-          rechnerName.push(barCharData[b].rechnerTopic+" "+barCharData[b].rechnerNummer.toString())
+        let ortsteilName = []
+
+        for(b in newData){
+          elektroautos.push(newData[b].elektroautos)
+          altenquote.push(newData[b].altenquote)
+          durchschnittlicheHaushaltsgroesse.push(newData[b].durchschnittlicheHaushaltsgroesse)
+          durchschnittsalter.push(newData[b].durchschnittsalter)
+          jugendquote.push(newData[b].jugendquote)
+          kitaKinder.push(newData[b].kitaKinder)
+          lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].lebenszufriedenheitZufriedenheitsfaktor)
+          persoenlichesEinkommen.push(newData[b].persoenlichesEinkommen)
+          straftaten.push(newData[b].straftaten)
+          wirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].wirtschaftlicheLageZufriedenheitsfaktor)
+          wohnviertelZufriedenheitsfaktor.push(newData[b].wohnviertelZufriedenheitsfaktor)
+          zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
+      
+          anzahlDia.push(newData[b].einfaerbung)
+          ortsteilName.push(newData[b].rechnerTopic+" "+newData[b].rechnerNummer.toString())
         }
         this.chartData = {
           datasets:[]
         }
-        for (x in rechnerName){
+        for (x in ortsteilName){
           this.chartData.datasets.push(
               {
-                label: rechnerName[x],
+                label: ortsteilName[x],
                 backgroundColor: this.colors[anzahlDia[x]],
                 data:[
                   {
-                    x:durchschnittsVerbrauch[x],
-                    y:maximalVerbrauch[x],
+                    x:durchschnittlicheHaushaltsgroesse[x],
+                    y:altenquote[x],
                     r:10,
                   }
                 ]
@@ -109,7 +129,10 @@
       async loadData(){
         this.loaded = false
         try {
-          this.bubbleChartData = await (await fetch("http://192.168.34.150:8081/get/kmeansByTimespan?clusteranzahl=" + this.anzahl + "&from="+this.anfang+"&to="+this.ende)).json();
+
+          //needs to deliver which categories and how many clusters (or)
+          this.bubbleChartData = await (await fetch(
+            "http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
           this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
@@ -153,7 +176,7 @@
               display: true,
               title: {
                 display: true,
-                text:'Durchschnittsverbrauch'
+                text:'durchschnittlicheHaushaltsgroesse'
               },
               suggestedMin: 0,
             },
@@ -161,7 +184,7 @@
               display: true,
               title: {
                 display: true,
-                text: 'Maximalverbrauch'
+                text: 'altenquote'
               },
               suggestedMin: 0,
             }
