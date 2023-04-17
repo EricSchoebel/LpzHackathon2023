@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router"
 // import EinzelneGruppe from "@/views/EinzelneGruppe"
 import Test from "@/views/Test"
+import Home from "@/views/Home"
 /*
 import MehrereGruppen from "@/views/MehrereGruppen"
 import LastSequenzen from "@/views/LastSequenzen"
