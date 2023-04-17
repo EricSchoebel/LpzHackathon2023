@@ -16,7 +16,7 @@ def dataframe_to_dict(dataframe):
 
 def label_adder(dataframe, labels):
     df_copy = dataframe.copy()
-    df_copy['labels'] = labels #add labels column with result content
+    df_copy['label'] = labels #add labels column with result content
     return df_copy
 
 
