@@ -5,7 +5,20 @@ api_controller = Blueprint(__name__, "api_controller") #initialize blueprint
 
 @api_controller.route("/get/allData")
 def get_all_data():
-    return jsonify(testing())
+    return jsonify(dataframe_to_dict(clean_df))
+
+@api_controller.route("/get/kmeansAllData")
+def get_kmeans_all_data():
+    everything = [False, False] + [True]*12 #include all 12 meaningful columns
+    labels = kmeansWithoutK(everything, clean_df)
+    return jsonify(dataframe_to_dict(label_adder(clean_df,labels)))
+
+@api_controller.route("/get/kmeansAllDataTwoClusters")
+def get_kmeans_all_data_two_clusters():
+    everything = [False, False] + [True]*12 #include all 12 meaningful columns
+    labels = kmeansWithK(2, everything, clean_df)
+    return jsonify(dataframe_to_dict(label_adder(clean_df,labels)))
+
 
 
 @api_controller.route("/")  #API-call ; api_controller.route because variable in line 4 is api_controller
