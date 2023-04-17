@@ -86,7 +86,7 @@
         let wohnviertelZufriedenheitsfaktor = []
         let zukunftsaussichtZufriedenheitsfaktor = []
 
-        let anzahlDia = []
+        let anzahlDia = [] //labels?
         let ortsteilName = []
 
         for(b in newData){
@@ -103,7 +103,7 @@
           wohnviertelZufriedenheitsfaktor.push(newData[b].wohnviertelZufriedenheitsfaktor)
           zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
       
-          anzahlDia.push(newData[b].einfaerbung)
+          anzahlDia.push(newData[b].label) 
           ortsteilName.push(newData[b].rechnerTopic+" "+newData[b].rechnerNummer.toString())
         }
         this.chartData = {
@@ -132,8 +132,9 @@
 
           //needs to deliver which categories and how many clusters (or)
           this.bubbleChartData = await (await fetch(
-            "http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
-          this.updateDiagramm(this.bubbleChartData)
+            //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
+            "http://127.0.0.1:5000//get/kmeansAllDataTwoClusters")).json();
+            this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
           console.error(e)
