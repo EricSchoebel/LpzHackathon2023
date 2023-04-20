@@ -65,7 +65,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from preparation import df_pivot
 
-clean_df = df_pivot
+clean_df = df_pivot #complete clean dataset
 
 # Extract the numerical data from the DataFrame
 #X = clean_df.select_dtypes(include=['float64', 'int64'])
