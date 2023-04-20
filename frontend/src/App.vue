@@ -45,8 +45,8 @@
     </v-app-bar>
 
     <v-main>
-      <RouterView/>
       
+      <router-view></router-view>
       <!--  -->
     </v-main>
   </v-app>
@@ -55,6 +55,14 @@
 <script>
 import { useTheme } from 'vuetify';
 import '@mdi/font/css/materialdesignicons.css'
+//import { RouterView } from "vue-router";
+
+//import Vue from 'vue';
+//import VueRouter from 'vue-router';
+//Vue.use(VueRouter);
+//import { useRouter } from 'vue-router'
+//import router from './router/index.js';
+
 
 export default {
   data () {
@@ -69,7 +77,6 @@ export default {
       theme,
       toggleTheme: () => {
         theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-
       }
     }
   },
