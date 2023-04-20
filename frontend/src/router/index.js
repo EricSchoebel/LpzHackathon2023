@@ -1,50 +1,50 @@
 import { createWebHistory, createRouter } from "vue-router"
 // import EinzelneGruppe from "@/views/EinzelneGruppe"
-import Test from "@/views/Test"
-import Home from "@/views/Home"
+import HomeStart from "@/views/HomeStart"
+
+//Chat
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
 /*
+import WerteVergleich from "@/views/WerteVergleich"
+import Clustering from "@/views/Clustering"
+import AnomalieErkennung from "@/views/AnomalieErkennung"
+
 import MehrereGruppen from "@/views/MehrereGruppen"
 import LastSequenzen from "@/views/LastSequenzen"
 import GruppenBearbeiten from "@/views/GruppenBearbeiten"
 import Home from "@/views/Home"
 */
 
+//Chat
+Vue.use(VueRouter);
+
+
 const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home, //it's called "component" here but it is actually in views
-    },
-  /*  {
-        path: "/EinzelneGruppe",
-        name: "Einzelne Gruppe",
-        component: EinzelneGruppe,
-        alias: "/EinzelneGruppe",
-    },  */
-    {
-        path: "/Test",
-        name: "Test",
-        component: Test,
-        alias: "/Test",
+        component: HomeStart, //it's called "component" here but it is actually in views
     },
     /*
     {
-        path: "/MehrereGruppen",
-        name: "MehrereGruppen",
-        component: MehrereGruppen,
-        alias: "/MehrereGruppen",
+        path: "/Wertevergleich",
+        name: "Wertevergleich",
+        component: WerteVergleich,
+        alias: "/Wertevergleich",
     },
     {
-        path: "/LastSequenzen",
-        name: "Last-Sequenzen",
-        component: LastSequenzen,
-        alias: "/LastSequenzen",
+        path: "/Clustering",
+        name: "Clustering",
+        component: Clustering,
+        alias: "/Clustering",
     },
     {
-        path: "/GruppenBearbeiten",
-        name: "Gruppen bearbeiten",
-        component: GruppenBearbeiten,
-        alias: "/GruppenBearbeiten",
+        path: "/Anomalieerkennung",
+        name: "Anomalieerkennung",
+        component: AnomalieErkennung,
+        alias: "/Anomalieerkennung",
     },
     */
     {
