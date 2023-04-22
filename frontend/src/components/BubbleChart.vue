@@ -27,7 +27,7 @@
         type: String,
         default: 'bubble-chart'
       },
-      anfang:{
+      /*anfang:{
         type: String,
         default:"",
       },
@@ -35,6 +35,7 @@
         type: String,
         default:"",
       },
+      */
       anzahl: {
         type: String,
         default: "3",
@@ -143,6 +144,7 @@
     },
     watch:{
       //prüft, ob sich der Anfang ändert
+     /*
       anfang:function(){
         this.loadData()
       },
@@ -150,6 +152,7 @@
       ende:function(){
         this.loadData()
       },
+      */
       //prüft, ob sich die Gruppe ändert
       anzahl:function(){
         this.loadData()

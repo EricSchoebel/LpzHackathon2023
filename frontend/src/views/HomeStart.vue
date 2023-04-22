@@ -20,8 +20,6 @@
                <BubbleChart
                    ref="bChart"
                    :anzahl="this.anzahl"
-                   :anfang="reverseAnfang()"
-                   :ende="reverseEnde()"
                ></BubbleChart>
              </v-card>
            </v-col>
@@ -37,13 +35,30 @@
                    class="px-5 pb-3"
                    type="number"
                    v-model="anzahl"
-                   bg-color="#282828FF"></v-text-field>
+                   ></v-text-field>
              </v-card>
             <!--   <v-card rounded="0">
                <v-card-title>Zeitraum</v-card-title>
                <v-text-field label="Anfang" variant="outlined" class="px-5 pb-3"  type="date" v-model="anfang" bg-color="#282828FF"></v-text-field>
                <v-text-field label="Ende" variant="outlined" class="px-5 pb-3"  type="date" v-model="ende" bg-color="#282828FF"></v-text-field>
              </v-card> -->
+
+
+             <!--
+              BEI BUBBLE CHART DIAGRAM WARS:
+              <v-card class="BDiagramm" rounded="0" >
+               <BubbleChart
+                   ref="bChart"
+                   :anzahl="this.anzahl"
+                   :anfang="reverseAnfang()"
+                   :ende="reverseEnde()"
+               ></BubbleChart>
+             </v-card>
+
+
+            bei v-text-field WARS:
+             bg-color="#282828FF"   IST SCHWARZ
+             -->
            </v-col>
          </v-row>
 
@@ -62,6 +77,7 @@ export default {
   },
   methods:{
     //gibt ein gedrehtes Datum vom Anfangszeitpunkt zurück
+    /*
     reverseAnfang(){
       let t = this.anfang.split('-')
       t.reverse()
@@ -79,6 +95,7 @@ export default {
       t.reverse()
       return t.join('-')
     },
+    */
     
   },
   watch:{
