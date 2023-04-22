@@ -40,9 +40,11 @@
         type: String,
         default: "3",
       },
+      /*
       rechnerSelect:{
         type: Array,
       },
+      */
       datasetIdKey: {
         type: String,
         default: 'label'
@@ -88,7 +90,7 @@
         let zukunftsaussichtZufriedenheitsfaktor = []
 
         let anzahlDia = [] //labels?
-        let ortsteilName = []
+        let ortsteil = []
 
         for(b in newData){
           elektroautos.push(newData[b].elektroautos)
@@ -105,15 +107,15 @@
           zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
       
           anzahlDia.push(newData[b].label) 
-          ortsteilName.push(newData[b].rechnerTopic+" "+newData[b].rechnerNummer.toString())
+          ortsteil.push(newData[b].Ortsteil.toString())
         }
         this.chartData = {
           datasets:[]
         }
-        for (x in ortsteilName){
+        for (x in ortsteil){
           this.chartData.datasets.push(
               {
-                label: ortsteilName[x],
+                label: ortsteil[x],
                 backgroundColor: this.colors[anzahlDia[x]],
                 data:[
                   {
