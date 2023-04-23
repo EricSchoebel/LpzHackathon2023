@@ -72,7 +72,15 @@ export default {
   components: {BubbleChart},
   data(){
     return{
-      
+      anzahl:"3",
+      anfang:"2023-01-25",
+      ende:"2023-03-03",
+      topics:[],
+      rechner:[],
+      maxAnzahlTopics:1,
+      maxAnzahlRechner:56,
+      today:"2023-03-03",
+      allerAnfang:"25-01-2023"
     }
   },
   methods:{
