@@ -4,9 +4,9 @@
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from preparation import df_pivot
+import pandas as pd
 
 clean_df = df_pivot
-#print(df_pivot.to_string)
 
 
 def dataframe_to_dict(dataframe):
