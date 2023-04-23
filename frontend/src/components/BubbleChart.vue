@@ -51,11 +51,11 @@
       },
       width: {
         type: Number,
-        default: 1000
+        default: 500
       },
       height: {
         type: Number,
-        default: 1000,
+        default: 500,
       },
       cssClasses: {
         default: '',
@@ -107,7 +107,8 @@
           zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
       
           anzahlDia.push(newData[b].label) 
-          ortsteil.push(newData[b].Ortsteil.toString())
+          ortsteil.push(newData[b].Ortsteil)
+          //war vorher innerhalb noch .toString()
         }
         this.chartData = {
           datasets:[]
@@ -136,7 +137,9 @@
           //needs to deliver which categories and how many clusters (or)
           this.bubbleChartData = await (await fetch(
             //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
-            "http://127.0.0.1:5000//get/kmeansAllDataTwoClusters")).json();
+            "http://127.0.0.1:5000//get/kmeansAllDataTwoClusters"))
+            //.json()
+            ;
             this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
@@ -155,7 +158,7 @@
         this.loadData()
       },
       */
-      //prüft, ob sich die Gruppe ändert
+      //checks change in anzahl and calls if any loadData()
       anzahl:function(){
         this.loadData()
       },
