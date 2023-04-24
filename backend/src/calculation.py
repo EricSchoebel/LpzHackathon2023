@@ -159,7 +159,7 @@ def detectOutliersLOF(included_cols, dataframe):
                      include]  # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
 
-    lof = LocalOutlierFactor(n_neighbors=20, contamination=0.1, novelty=False)
+    lof = LocalOutlierFactor(n_neighbors=20, contamination='auto', novelty=False)
     lof.fit(X)
     # Predict the outlier scores
     outlier_scores = lof.negative_outlier_factor_
