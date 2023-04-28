@@ -66,6 +66,9 @@ from sklearn.metrics import silhouette_score
 from preparation import df_pivot
 
 clean_df = df_pivot #complete clean dataset
+#pd.set_option('display.max_rows', None)
+#pd.set_option('display.max_columns', None)
+#print(clean_df.to_string)
 
 # Extract the numerical data from the DataFrame
 #X = clean_df.select_dtypes(include=['float64', 'int64'])
@@ -130,8 +133,52 @@ When n_init='auto', the number of runs depends on the value of init: 10 if using
 """
 
 #testing
-print(kmeansWithK(2, example, clean_df))
-print(kmeansWithoutK(example, clean_df))
+#print(kmeansWithK(2, example, clean_df))
+#print(kmeansWithoutK(example, clean_df))
+
+def label_adder(dataframe, labels):
+    df_copy = dataframe.copy()
+    df_copy['label'] = labels #add labels column with result content
+    return df_copy
+
+
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neighbors import LocalOutlierFactor
+
+np.random.seed(42)
+
+example2 = [False, False] + [True]*12
+#detect outliers with LOF (Local Outlier Factor)
+def detectOutliersLOF(included_cols, dataframe):
+    col_names = dataframe.columns.tolist()  # get column names from DataFrame
+    selected_cols = [col_names[i] for i, include in enumerate(included_cols) if
+                     include]  # select relevant columns based on included_cols list
+    X = dataframe[selected_cols].to_numpy()
+
+    lof = LocalOutlierFactor(n_neighbors=20, contamination='auto', novelty=False)
+    lof.fit(X)
+    # Predict the outlier scores
+    outlier_scores = lof.negative_outlier_factor_
+    #print(outlier_scores)
+    # Set a threshold for outlier detection
+    threshold = -1.5
+    # Generate labels (1 for outliers, 0 for inliers)
+    labels = [1 if score < threshold else 0 for score in outlier_scores]
+
+    return label_adder(dataframe, labels)
+
+
+
+
+#print( detectOutliersLOF(example2, clean_df) )
+detectOutliersLOF(example2, clean_df)
+
+
+
 
 
 

@@ -121,8 +121,6 @@ filtered3_data = filtered2_data.copy(deep=True)
 # create new 'ortsteil_id' column using the dictionary to map values to IDs
 filtered3_data['ortsteil_id'] = filtered2_data['ortsteil'].map(ortsteil_dict) #function "map" takes keys as input and gives values as output
 
-print("alles ok")
-
 
 filtered4_data = filtered3_data[['ortsteil_id','ortsteil', 'name', 'wert', 'jahr']] #IMPORTANT: DO NOT FORGET TO DO DOUBLE SQUARE BRACKETS
 # print(filtered3_data[['ortsteil', 'name', 'wert', 'jahr']])
@@ -205,9 +203,7 @@ for col in df_pivot.columns:
 
 #print(df_pivot.dtypes) #After
 
-
-
-#ToDo: hier weitermachen, am besten eig in calculation.py
+print("--Datensatz vorbereitet--")
 
 
 
