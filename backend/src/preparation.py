@@ -208,9 +208,10 @@ print('----------------')
 for col in df_pivot.columns:
     try:
         #convert to string, then slice, then to float (before: values too long for float)
-        df_pivot[col] = df_pivot[col].astype(str)
-        df_pivot[col] = df_pivot[col].str.slice(stop=7)
-        df_pivot[col] = df_pivot[col].str.replace(',', '.').astype(float)
+        if col != 'Ortsteil': # Ortsteile should not be shortened
+            df_pivot[col] = df_pivot[col].astype(str)
+            df_pivot[col] = df_pivot[col].str.slice(stop=7)
+            df_pivot[col] = df_pivot[col].str.replace(',', '.').astype(float)
     except ValueError:
         pass
 
