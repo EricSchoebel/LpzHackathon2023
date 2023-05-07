@@ -3,10 +3,13 @@ from api_services import *
 
 api_controller = Blueprint(__name__, "api_controller") #initialize blueprint
 
+#---for Wertevergleich
 @api_controller.route("/get/allData")
 def get_all_data():
     return jsonify(dataframe_to_dict(clean_df))
 
+
+#---for Clustering
 @api_controller.route("/get/kmeansAllData")
 def get_kmeans_all_data():
     everything = [False, False] + [True]*12 #include all 12 meaningful columns
@@ -19,11 +22,55 @@ def get_kmeans_all_data_two_clusters():
     labels = kmeansWithK(2, everything, clean_df)
     return jsonify(dataframe_to_dict(label_adder(clean_df,labels)))
 
+# idea: which rows (orsteile) and columns (kategorien) the kmeans is based on, is delivered via encoded strings,
+# e.g. kategorien_string = "111000100111"
+
+@api_controller.route("get/kmeansWithk") # /get/kmeansWithk?param1=value1&param2=value2&param3=value3
+def get_kmeansWithk_with_inputs():
+    k = int(request.args.get("clusteranzahl")) # just a number
+    ortsteile_string = request.args.get("ortsteile_string") # string with exactly 63 characters
+    kategorien_string = request.args.get("kategorien_string") # string with exactly 12 characters
+
+    included_ortsteile = string_decoder(ortsteile_string) #tells us which rows (from 0 to 62)
+    included_kategorien = [False, False] + string_decoder(kategorien_string) #tells us which columns
+    relevant_ortsteile_dataframe = create_partial_dataframe(clean_df, included_ortsteile)
+
+    labels = kmeansWithK(k, included_kategorien, relevant_ortsteile_dataframe)
+
+    # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
+    return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_dataframe, labels)))
+# Test with:
+# http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000010100000000000000000000000000000000000&kategorien_string=111000010000
+
+@api_controller.route("get/kmeansWithoutk") # /get/kmeansWithoutk?param1=value1&param2=value2
+def get_kmeansWithoutk_with_inputs():
+    ortsteile_string = request.args.get("ortsteile_string")
+    kategorien_string = request.args.get("kategorien_string")
+
+    included_ortsteile = string_decoder(ortsteile_string)  # tells us which rows (from 0 to 62)
+    included_kategorien = [False, False] + string_decoder(kategorien_string)  # tells us which columns
+    relevant_ortsteile_dataframe = create_partial_dataframe(clean_df, included_ortsteile)
+
+    labels = kmeansWithoutK(included_kategorien, relevant_ortsteile_dataframe)
+
+    # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
+    return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_dataframe, labels)))  #hint: hiighest label+1 gives you clusteranzahl for frontend
+
+
+
+
+
 
 
 @api_controller.route("/")  #API-call ; api_controller.route because variable in line 4 is api_controller
 def home():
     return render_template("index.html")
+
+#method alternative 2 for passing parameters
+@api_controller.route("/api/<param1>/<param2>")
+def my_api(param1, param2):
+    # Use the parameters in your API logic
+    return f"Parameter 1: {param1}, Parameter 2: {param2}"
 
 @api_controller.route("/test/<username>") #in french brackets parameter
 def test(username): #refering to the parameter

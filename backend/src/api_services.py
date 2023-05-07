@@ -19,6 +19,17 @@ def label_adder(dataframe, labels):
     df_copy['label'] = labels #add labels column with result content
     return df_copy
 
+#for ortsteile and kategorien decoding
+def string_decoder(encoded_string): #decodes String to list of booleans
+    boolean_list = [char == "1" for char in encoded_string]
+    return boolean_list
+
+def create_partial_dataframe(dataframe, boolean_list):
+    new_df = dataframe.loc[boolean_list]
+    return new_df
+
+
+
 
 def testing():
     test_dict = {
