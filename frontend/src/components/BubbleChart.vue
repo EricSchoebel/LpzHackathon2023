@@ -193,17 +193,17 @@
           },
           scales: {
             x: {
-              display: true,
+              display: false,
               title: {
-                display: true,
+                display: false,
                 text:'durchschnittlicheHaushaltsgroesse'
               },
               suggestedMin: 0,
             },
             y: {
-              display: true,
+              display: false,
               title: {
-                display: true,
+                display: false,
                 text: 'altenquote'
               },
               suggestedMin: 0,
