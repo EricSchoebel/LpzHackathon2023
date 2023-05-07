@@ -51,6 +51,7 @@ import numpy as np
 import pandas as pd
 import json
 import glob
+import os
 
 
 
@@ -68,15 +69,26 @@ df = pd.DataFrame(data)
 print(df.T)
 """
 
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Load data from a JSON file
-data = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\a.json', orient='records')
-data2 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\b.json', orient='records')
-data3 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\c.json', orient='records')
-data4 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\d.json', orient='records')
-data5 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\e.json', orient='records')
-data6 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\f.json', orient='records')
-data7 = pd.read_json(r'D:\Programmierung\PyCharm\eigeneProjekte\Lv4\backend\files\json_files\g.json', orient='records')
+# Constructing and normalizing the relative path to the JSON file
+json_file_path_a = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'a.json'))
+json_file_path_b = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'b.json'))
+json_file_path_c = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'c.json'))
+json_file_path_d = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'd.json'))
+json_file_path_e = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'e.json'))
+json_file_path_f = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'f.json'))
+json_file_path_g = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'g.json'))
+
+# Load data from JSON files
+data = pd.read_json(json_file_path_a, orient='records')
+data2 = pd.read_json(json_file_path_b, orient='records')
+data3 = pd.read_json(json_file_path_c, orient='records')
+data4 = pd.read_json(json_file_path_d, orient='records')
+data5 = pd.read_json(json_file_path_e, orient='records')
+data6 = pd.read_json(json_file_path_f, orient='records')
+data7 = pd.read_json(json_file_path_g, orient='records')
 df = pd.concat([data, data2, data3, data4, data5, data6, data7])
 
 #print(data.head(5105))
@@ -140,7 +152,7 @@ df_pivot = df_pivot.reset_index()
 #drop redundant column 'name'
 #df_pivot2 = df_pivot.drop('name', axis=1)
 
-#Renaming columns
+#Renaming columns, left old, right new
 df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'Kita-Kinder',
                                      'Straftaten insgesamt': 'Straftaten',
                                      '   mit Elektromotor': 'Elektroautos',
@@ -196,9 +208,10 @@ print('----------------')
 for col in df_pivot.columns:
     try:
         #convert to string, then slice, then to float (before: values too long for float)
-        df_pivot[col] = df_pivot[col].astype(str)
-        df_pivot[col] = df_pivot[col].str.slice(stop=7)
-        df_pivot[col] = df_pivot[col].str.replace(',', '.').astype(float)
+        if col != 'Ortsteil': # Ortsteile should not be shortened
+            df_pivot[col] = df_pivot[col].astype(str)
+            df_pivot[col] = df_pivot[col].str.slice(stop=7)
+            df_pivot[col] = df_pivot[col].str.replace(',', '.').astype(float)
     except ValueError:
         pass
 
