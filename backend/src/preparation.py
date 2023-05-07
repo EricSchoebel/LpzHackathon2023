@@ -153,17 +153,23 @@ df_pivot = df_pivot.reset_index()
 #df_pivot2 = df_pivot.drop('name', axis=1)
 
 #Renaming columns, left old, right new
-df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'Kita-Kinder',
+df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'KitaKinder',
                                      'Straftaten insgesamt': 'Straftaten',
                                      '   mit Elektromotor': 'Elektroautos',
-                                     'Lebenszufriedenheit': 'Lebenszufriedenheit (Zufriedenheitsfaktor)',
-                                     'Wohnviertel':'Wohnviertel (Zufriedenheitsfaktor)',
-                                     'Zukunftsaussicht':'Zukunftsaussicht (Zufriedenheitsfaktor)',
-                                     'Wirtschaftliche Lage': 'Wirtschaftliche Lage (Zufriedenheitsfaktor)',
+                                     'Lebenszufriedenheit': 'Lebenszufriedenheit_(Zufriedenheitsfaktor)',
+                                     'Wohnviertel':'Wohnviertel_(Zufriedenheitsfaktor)',
+                                     'Zukunftsaussicht':'Zukunftsaussicht_(Zufriedenheitsfaktor)',
+                                     'Wirtschaftliche Lage': 'WirtschaftlicheLage_(Zufriedenheitsfaktor)',
                                      'ortsteil': 'Ortsteil',
                                      'ortsteil_id': 'Ortsteil_ID',
-                                    # 'Durchschnittliche Haushaltsgröße':'durchschnittlicheHaushaltsgröße'
+                                     'Durchschnittliche Haushaltsgröße':'DurchschnittlicheHaushaltsgröße',
+                                     'Persönliches Einkommen':'PersönlichesEinkommen'
                                      })
+
+columns = df_pivot.columns.tolist()
+columns[2], columns[3] = columns[3], columns[2]
+df_pivot = df_pivot[columns]
+
 
 # Print the filtered data
 #print(filtered4_data)
@@ -218,6 +224,9 @@ for col in df_pivot.columns:
 #print(df_pivot.dtypes) #After
 
 print("--Datensatz vorbereitet--")
+
+for col in df_pivot.columns:
+    print(col)
 
 
 
