@@ -149,7 +149,8 @@ df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'Kita-Kinder',
                                      'Zukunftsaussicht':'Zukunftsaussicht (Zufriedenheitsfaktor)',
                                      'Wirtschaftliche Lage': 'Wirtschaftliche Lage (Zufriedenheitsfaktor)',
                                      'ortsteil': 'Ortsteil',
-                                     'ortsteil_id': 'Ortsteil_ID'
+                                     'ortsteil_id': 'Ortsteil_ID',
+                                    # 'Durchschnittliche Haushaltsgröße':'durchschnittlicheHaushaltsgröße'
                                      })
 
 # Print the filtered data

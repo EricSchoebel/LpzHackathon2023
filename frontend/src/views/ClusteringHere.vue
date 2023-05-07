@@ -17,10 +17,13 @@
          <v-row class="ma-5">
            <v-col>
              <v-card class="BDiagramm" rounded="0" >
-               <BubbleChart
+
+
+              <TestZwei></TestZwei>
+             <BubbleChart
                    ref="bChart"
                    :anzahl="this.anzahl"
-               ></BubbleChart>
+               ></BubbleChart> 
              </v-card>
            </v-col>
            <v-col class="align-right">
@@ -68,8 +71,9 @@
 
 <script>
 import BubbleChart from "@/components/BubbleChart";
+//import TestZwei from "@/components/TestZwei";
 export default {
-  components: {BubbleChart},
+  components: { BubbleChart },
   data(){
     return{
       anzahl:"3",
@@ -113,11 +117,6 @@ export default {
 }
 </script>
 <style>
-#bubble-chart{
-  height: 45vh;
-  width: 50%;
-  padding: 5px;
-}
 h2{
   text-align: center;
   position: relative;
