@@ -24,8 +24,12 @@ def string_decoder(encoded_string): #decodes String to list of booleans
     boolean_list = [char == "1" for char in encoded_string]
     return boolean_list
 
-def create_partial_dataframe(dataframe, boolean_list):
+def create_partial_rows_dataframe(dataframe, boolean_list):  #reduce rows
     new_df = dataframe.loc[boolean_list]
+    return new_df
+
+def create_partial_cols_dataframe(dataframe, boolean_list):  #reduce columns
+    new_df = dataframe.loc[:, boolean_list]
     return new_df
 
 
@@ -48,10 +52,14 @@ def testing():
 # included_cols = which dimensions should be taken into account (maximum 12)
 #   -> list of 1 (true) or 0 (false)
 """
-[Elektroautos, Altenquote, Durchschnittliche Haushaltsgröße, Durchschnittsalter, Jugendquote, Kita-Kinder,
- Lebenszufriedenheit (Zufriedenheitsfaktor), Persönliches Einkommen, Straftaten,
-  Wirtschaftliche Lage (Zufriedenheitsfaktor) Wohnviertel (Zufriedenheitsfaktor) Zukunftsaussicht (Zufriedenheitsfaktor)]
+first two categories are just Ortsteil_ID and Ortsteil. Then:
+[Altenquote, Elektroautos, Altenquote, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
+ Lebenszufriedenheit_(Zufriedenheitsfaktor), PersönlichesEinkommen, Straftaten,
+  WirtschaftlicheLage_(Zufriedenheitsfaktor), Wohnviertel_(Zufriedenheitsfaktor), Zukunftsaussicht_(Zufriedenheitsfaktor)]
+  
+CAUTION: this is the ordering in the dataframe! It does not match the display in the API call
 """
+
 def kmeansWithK(k, included_cols, dataframe):
     num_rows = dataframe.shape[0]
     if k>num_rows: #you cannot have more clusters the dataframe rows
@@ -94,7 +102,8 @@ Further remarks (from https://scikit-learn.org/stable/modules/generated/sklearn.
 When n_init='auto', the number of runs depends on the value of init: 10 if using init='random', 1 if using init='k-means++'.
 """
 
-
+# LOF noch hier einfuegen!
+# FIXME am Ende kann calculation.py vielleicht aufgeloest werden, wenn alle hier drin steht
 
 
 
