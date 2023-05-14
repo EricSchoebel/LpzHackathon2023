@@ -86,9 +86,10 @@ example = [False, False] + [True]*12
 # included_cols = which dimensions should be taken into account (maximum 12)
 #   -> list of 1 (true) or 0 (false)
 """
-[Elektroautos, Altenquote, Durchschnittliche Haushaltsgröße, Durchschnittsalter, Jugendquote, Kita-Kinder,
- Lebenszufriedenheit (Zufriedenheitsfaktor), Persönliches Einkommen, Straftaten,
-  Wirtschaftliche Lage (Zufriedenheitsfaktor) Wohnviertel (Zufriedenheitsfaktor) Zukunftsaussicht (Zufriedenheitsfaktor)]
+first two categories are just Ortsteil_ID and Ortsteil. Then:
+[Altenquote, Elektroautos, Altenquote, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
+ Lebenszufriedenheit_(Zufriedenheitsfaktor), PersönlichesEinkommen, Straftaten,
+  WirtschaftlicheLage_(Zufriedenheitsfaktor), Wohnviertel_(Zufriedenheitsfaktor), Zukunftsaussicht_(Zufriedenheitsfaktor)]
 """
 def kmeansWithK(k, included_cols, dataframe):
     num_rows = dataframe.shape[0]
