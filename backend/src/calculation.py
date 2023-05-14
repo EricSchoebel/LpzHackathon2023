@@ -87,7 +87,7 @@ example = [False, False] + [True]*12
 #   -> list of 1 (true) or 0 (false)
 """
 first two categories are just Ortsteil_ID and Ortsteil. Then:
-[Altenquote, Elektroautos, Altenquote, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
+[Altenquote, Elektroautos, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
  Lebenszufriedenheit_(Zufriedenheitsfaktor), PersönlichesEinkommen, Straftaten,
   WirtschaftlicheLage_(Zufriedenheitsfaktor), Wohnviertel_(Zufriedenheitsfaktor), Zukunftsaussicht_(Zufriedenheitsfaktor)]
   
