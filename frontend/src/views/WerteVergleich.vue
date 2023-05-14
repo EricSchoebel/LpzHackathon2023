@@ -9,7 +9,7 @@
         <v-combobox
           v-model="selectOrte"
           :items="itemsOrte"
-          label="Orteauswahl"
+          label="Ortsteile"
           multiple
           chips
         ></v-combobox>
@@ -17,7 +17,7 @@
         <v-combobox
           v-model="selectKategorie"
           :items="itemsKategorie"
-          label="Kategorieauswahl"
+          label="Kategorien"
           multiple
           chips
         ></v-combobox>
