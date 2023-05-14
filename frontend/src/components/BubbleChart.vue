@@ -28,24 +28,17 @@
         type: String,
         default: 'bubble-chart'
       },
-      /*anfang:{
-        type: String,
-        default:"",
-      },
-      ende:{
-        type: String,
-        default:"",
-      },
-      */
       anzahl: {
         type: String,
         default: "3",
       },
-      /*
-      rechnerSelect:{
+      orte:{ 
         type: Array,
       },
-      */
+      kategorie:{
+        type: Array,
+      },
+
       datasetIdKey: {
         type: String,
         default: 'label'
@@ -95,26 +88,35 @@
         let anzahlDia = [] //labels?
         let ortsteil = []
 
+        let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
+                "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+                "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
+                "ZukunftsaussichtZufriedenheitsfaktor"]
+
         for(b in newData){
-          console.log("hier?")
-          elektroautos.push(newData[b].Elektroautos)
+          //console.log("nun")
           altenquote.push(newData[b].Altenquote)
           durchschnittlicheHaushaltsgroesse.push(newData[b].DurchschnittlicheHaushaltsgröße)
-          durchschnittsalter.push(newData[b].durchschnittsalter)
-          jugendquote.push(newData[b].jugendquote)
-          kitaKinder.push(newData[b].kitaKinder)
-          lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].lebenszufriedenheitZufriedenheitsfaktor)
+          durchschnittsalter.push(newData[b].Durchschnittsalter)
+          elektroautos.push(newData[b].Elektroautos)
+          jugendquote.push(newData[b].Jugendquote)
+          kitaKinder.push(newData[b].KitaKinder)
+          lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
           persoenlichesEinkommen.push(newData[b].persoenlichesEinkommen)
           straftaten.push(newData[b].straftaten)
           wirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].wirtschaftlicheLageZufriedenheitsfaktor)
-          wohnviertelZufriedenheitsfaktor.push(newData[b].wohnviertelZufriedenheitsfaktor)
-          zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
+          wohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
+          zukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
       
           anzahlDia.push(newData[b].label) 
           ortsteil.push(newData[b].Ortsteil)
-          
+
           //war vorher innerhalb noch .toString()
         }
+        //console.log(ortsteil)
+        //let moin = this.kategorie
+        //console.log(moin)
+
         this.chartData = {
           datasets:[]
         }
@@ -126,7 +128,7 @@
                 data:[
                   {
                     x:elektroautos[x],
-                    y:altenquote[x],
+                    y:durchschnittsalter[x],
                     r:10,
                   }
                 ]
@@ -136,6 +138,12 @@
         
        // mit eigenen Werten testen
        
+      
+       this.$emit("orte", ortsteil)
+       this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
+
+
+
       },
       
       //lädt die Daten von der API
@@ -169,6 +177,12 @@
       */
       //checks change in anzahl and calls if any loadData()
       anzahl:function(){
+        this.loadData()
+      },
+      orte:function(){
+        this.loadData()
+      },
+      kategorie:function(){
         this.loadData()
       },
     },
