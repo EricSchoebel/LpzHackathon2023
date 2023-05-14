@@ -54,8 +54,8 @@ def testing():
 """
 first two categories are just Ortsteil_ID and Ortsteil. Then:
 [Altenquote, Elektroautos, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
- Lebenszufriedenheit_(Zufriedenheitsfaktor), PersönlichesEinkommen, Straftaten,
-  WirtschaftlicheLage_(Zufriedenheitsfaktor), Wohnviertel_(Zufriedenheitsfaktor), Zukunftsaussicht_(Zufriedenheitsfaktor)]
+ LebenszufriedenheitZufriedenheitsfaktor, PersönlichesEinkommen, Straftaten,
+  WirtschaftlicheLageZufriedenheitsfaktor, WohnviertelZufriedenheitsfaktor, ZukunftsaussichtZufriedenheitsfaktor]
   
 CAUTION: this is the ordering in the dataframe! It does not match the display in the API call
 """
