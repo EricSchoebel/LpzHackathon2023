@@ -149,6 +149,8 @@
         //fill data as desired
         if ((this.kategorie).length === 2){
           console.log("a")
+          console.log("b")
+          
         }
         else{
           //nur Text anzeigen
