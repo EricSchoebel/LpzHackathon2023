@@ -38,7 +38,9 @@ def get_kmeansWithk_with_inputs():
     labels = kmeansWithK(k, included_kategorien, relevant_ortsteile_dataframe)
 
     # after kmeans because kmeans expects dataframe with all 14 columns
-    relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, included_kategorien)
+    keep_ortsteil = included_kategorien
+    keep_ortsteil[1] = True
+    relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
     # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))
@@ -57,7 +59,9 @@ def get_kmeansWithoutk_with_inputs():
     labels = kmeansWithoutK(included_kategorien, relevant_ortsteile_dataframe)
 
     # after kmeans because kmeans expects dataframe with all 14 columns
-    relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, included_kategorien)
+    keep_ortsteil = included_kategorien
+    keep_ortsteil[1] = True
+    relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
     # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))  #hint: hiighest label+1 gives you clusteranzahl for frontend
