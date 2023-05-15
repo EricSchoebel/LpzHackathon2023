@@ -72,20 +72,18 @@
         let b;
         let x;
 
-        let elektroautos = []
-        let altenquote = []
-        
-        
-        let durchschnittlicheHaushaltsgroesse = []
-        let durchschnittsalter = []
-        let jugendquote = []
-        let kitaKinder = []
-        let lebenszufriedenheitZufriedenheitsfaktor = []
-        let persoenlichesEinkommen = []
-        let straftaten = []
-        let wirtschaftlicheLageZufriedenheitsfaktor = []
-        let wohnviertelZufriedenheitsfaktor = []
-        let zukunftsaussichtZufriedenheitsfaktor = []
+        let Altenquote = []
+        let DurchschnittlicheHaushaltsgröße = []
+        let Durchschnittsalter = []
+        let Elektroautos = []
+        let Jugendquote = []
+        let KitaKinder = []
+        let LebenszufriedenheitZufriedenheitsfaktor = []
+        let PersönlichesEinkommen = []
+        let Straftaten = []
+        let WirtschaftlicheLageZufriedenheitsfaktor = []
+        let WohnviertelZufriedenheitsfaktor = []
+        let ZukunftsaussichtZufriedenheitsfaktor = []
 
         let annot = [] //labels?
         let ortsteil = []
@@ -114,18 +112,18 @@
         //put API-Data into variables 
         for(b in newData){
           //console.log("nun")
-          altenquote.push(newData[b].Altenquote)
-          durchschnittlicheHaushaltsgroesse.push(newData[b].DurchschnittlicheHaushaltsgröße)
-          durchschnittsalter.push(newData[b].Durchschnittsalter)
-          elektroautos.push(newData[b].Elektroautos)
-          jugendquote.push(newData[b].Jugendquote)
-          kitaKinder.push(newData[b].KitaKinder)
-          lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
-          persoenlichesEinkommen.push(newData[b].persoenlichesEinkommen)
-          straftaten.push(newData[b].straftaten)
-          wirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].wirtschaftlicheLageZufriedenheitsfaktor)
-          wohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
-          zukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
+          Altenquote.push(newData[b].Altenquote)
+          DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
+          Durchschnittsalter.push(newData[b].Durchschnittsalter)
+          Elektroautos.push(newData[b].Elektroautos)
+          Jugendquote.push(newData[b].Jugendquote)
+          KitaKinder.push(newData[b].KitaKinder)
+          LebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
+          PersönlichesEinkommen.push(newData[b].PersönlichesEinkommen)
+          Straftaten.push(newData[b].Straftaten)
+          WirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].WirtschaftlicheLageZufriedenheitsfaktor)
+          WohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
+          ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
       
           annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
@@ -150,29 +148,57 @@
         if ((this.kategorie).length === 2){
           console.log("a")
           console.log("b")
-          
-        }
-        else{
-          //nur Text anzeigen
-        }
-
-
-
-        for (x in ortsteil){
+          let firstCateg = this.kategorie[0]
+          let secondCateg = this.kategorie[1]
+ 
+          for (x in ortsteil){
           this.chartData.datasets.push(
-              {
-                label: ortsteil[x],
-                backgroundColor: this.colors[annot[x]],
+              {  
+                label: ortsteil[x], //point's identifier in the diagramm
+                backgroundColor: this.colors[annot[x]], //real label/anotation
                 data:[
-                  {
-                    x:elektroautos[x],
-                    y:durchschnittsalter[x],
-                    r:10,
+                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
+                    x:(window[firstCateg])[x],
+                    y:(window[secondCateg])[x], 
+                    r:10, // point's radius
                   }
                 ]
               }
           )
         }
+          
+        }
+        else{
+          //nur Text anzeigen
+
+          console.log("a")
+          console.log("b")
+          let firstCateg = this.kategorie[0]
+          let secondCateg = this.kategorie[1]
+ 
+          for (x in ortsteil){
+          this.chartData.datasets.push(
+              {  
+                label: ortsteil[x], //point's identifier in the diagramm
+                backgroundColor: this.colors[annot[x]], //real label/anotation
+                data:[
+                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
+                    x:(window[firstCateg])[x], //hier stand vorher sowas wie  x:elektroautos[x]
+                    y:(window[secondCateg])[x], 
+                    r:10, // point's radius
+                  }
+                ]
+              }
+          )
+        }
+
+
+
+        }
+
+
+
+      
          
        // mit eigenen Werten testen
       
