@@ -29,7 +29,7 @@
         <v-text-field
                    v-model="anzahl"
                    :rules="[
-                       v=> v<64 || 'Die Anzahl muss 63 oder kleiner sein'
+                       v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein'
                    ]"
                    label="Anzahl"
                    variant="outlined"
@@ -55,9 +55,9 @@
          <v-row class="ma-5">
            <v-col>
                <h2>Clustering mittels Künstlicher Intelligenz</h2>
-               <v-card-text>Im folgenden Diagramm können Sie mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
+               <v-card-text>Im Folgenden können Sie mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
                 Wählen Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl. Letztere können Sie alternativ auch vom Tool optimieren lassen.
-                Bei zwei Kategorien können Sie das Ergebnis grafisch betrachten. Generell darf die Clusteranzahl die Anzahl ausgewähter Ortsteile nicht übersteigen.</v-card-text>
+                Bei zwei Kategorien können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Anzahl ausgewähter Ortsteile nicht übersteigen.</v-card-text>
            </v-col>
          </v-row>
 

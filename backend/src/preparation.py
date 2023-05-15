@@ -73,13 +73,13 @@ print(df.T)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Constructing and normalizing the relative path to the JSON file
-json_file_path_a = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'a.json'))
-json_file_path_b = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'b.json'))
-json_file_path_c = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'c.json'))
-json_file_path_d = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'd.json'))
-json_file_path_e = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'e.json'))
-json_file_path_f = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'f.json'))
-json_file_path_g = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'g.json'))
+json_file_path_a = os.path.join(script_dir, '..', 'files', 'json_files', 'a.json')
+json_file_path_b = os.path.join(script_dir, '..', 'files', 'json_files', 'b.json')
+json_file_path_c = os.path.join(script_dir, '..', 'files', 'json_files', 'c.json')
+json_file_path_d = os.path.join(script_dir, '..', 'files', 'json_files', 'd.json')
+json_file_path_e = os.path.join(script_dir, '..', 'files', 'json_files', 'e.json')
+json_file_path_f = os.path.join(script_dir, '..', 'files', 'json_files', 'f.json')
+json_file_path_g = os.path.join(script_dir, '..', 'files', 'json_files', 'g.json')
 
 # Load data from JSON files
 data = pd.read_json(json_file_path_a, orient='records')
@@ -227,6 +227,9 @@ print("--Datensatz vorbereitet--")
 
 for col in df_pivot.columns:
     print(col)
+
+distinct_values = df_pivot['Ortsteil'].unique()
+print(distinct_values)
 
 
 
