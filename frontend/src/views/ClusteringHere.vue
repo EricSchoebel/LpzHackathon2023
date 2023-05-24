@@ -29,7 +29,8 @@
         <v-text-field
                    v-model="anzahl"
                    :rules="[
-                       v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein'
+                       v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
+                       v=> v>0 || 'Die Anzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"
                    variant="outlined"
@@ -56,8 +57,8 @@
            <v-col>
                <h2>Clustering mittels Künstlicher Intelligenz</h2>
                <v-card-text>Im Folgenden können Sie mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
-                Wählen Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl. Letztere können Sie alternativ auch vom Tool optimieren lassen.
-                Bei zwei Kategorien können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Anzahl ausgewähter Ortsteile nicht übersteigen.</v-card-text>
+                Wählen Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl. Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
+                <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
 
@@ -128,8 +129,8 @@ h3{
   text-align: center;
 }
 .bubble-chart-container {
-  max-width: 800px; /* Set the maximum width */
-  max-height: 700px; /* Set the maximum height */
-  margin: 0 auto; /* Center the chart horizontally */
+  max-width: 800px; 
+  max-height: 600px; 
+  margin: 0 auto; /* Center the chart horizontally */ 
 }
 </style>

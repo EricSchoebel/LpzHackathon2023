@@ -2,7 +2,6 @@
     <Bubble class="bubblechart"
           
           :chart-options="chartOptions"
-          :chart-data="chartData"
           :chart-id="chartId"
           :dataset-id-key="datasetIdKey"
           :plugins="plugins"
@@ -133,8 +132,10 @@
 
 
 
-
-        //console.log(this.orte)
+        console.log("Elektroautos:")
+        console.log(Elektroautos)
+        console.log("Jugendquote:")
+        console.log(Jugendquote)
         //console.log(ortsteil)
         //let moin = this.kategorie
         //console.log(moin)
@@ -145,11 +146,14 @@
         }
 
         //fill data as desired
+        //only if two categories are selected in combobox
         if ((this.kategorie).length === 2){
-          console.log("a")
-          console.log("b")
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
+          console.log("if, first:")
+          console.log(firstCateg)
+          console.log("if, second:")
+          console.log(secondCateg)
  
           for (x in ortsteil){
           this.chartData.datasets.push(
@@ -158,8 +162,8 @@
                 backgroundColor: this.colors[annot[x]], //real label/anotation
                 data:[
                   { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
-                    x:(window[firstCateg])[x],
-                    y:(window[secondCateg])[x], 
+                    x:(eval(firstCateg))[x],
+                    y:(eval(secondCateg))[x], 
                     r:10, // point's radius
                   }
                 ]
@@ -170,11 +174,13 @@
         }
         else{
           //nur Text anzeigen
-
-          console.log("a")
-          console.log("b")
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
+          console.log("else, first:")
+          console.log(firstCateg)
+          console.log("else, second:")
+          console.log(secondCateg)
+
  
           for (x in ortsteil){
           this.chartData.datasets.push(
@@ -308,31 +314,31 @@
         },
         chartOptions:{
           responsive:true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           plugins:{
             legend: {
-              display: false,
+              display: true,
             },
             title:{
-              display: false,
+              display: true,
             },
           },
           scales: {
             x: {
-              display: false,
+              display: true,
               title: {
-                display: false,
+                display: true,
                 text:'durchschnittlicheHaushaltsgroesse'
               },
-              suggestedMin: 0,
+              //suggestedMin: 0,
             },
             y: {
-              display: false,
+              display: true,
               title: {
-                display: false,
+                display: true,
                 text: 'altenquote'
               },
-              suggestedMin: 0,
+              //suggestedMin: 0,
             }
           }
         }

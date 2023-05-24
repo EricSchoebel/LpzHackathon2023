@@ -42,7 +42,6 @@ def get_kmeansWithk_with_inputs():
     keep_ortsteil[1] = True
     relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
-    # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))
 # Test with:
 # http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000010100000000000000000000000000000000000&kategorien_string=111000010000
@@ -60,10 +59,9 @@ def get_kmeansWithoutk_with_inputs():
 
     # after kmeans because kmeans expects dataframe with all 14 columns
     keep_ortsteil = included_kategorien
-    keep_ortsteil[1] = True
+    keep_ortsteil[1] = True # because second column is Ortsteil
     relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
-    # relevant_ortsteile_and_kategorien_dataframe is not created; all columns are given back to frontend, even if not used in kmeans
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))  #hint: hiighest label+1 gives you clusteranzahl for frontend
 
 
