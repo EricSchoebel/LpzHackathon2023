@@ -223,10 +223,34 @@ for col in df_pivot.columns:
 
 #print(df_pivot.dtypes) #After
 
+column_names = df_pivot.columns.tolist()
+new_column_order = [
+    column_names[0],   # First column remains the same
+    column_names[1],   # Second column remains the same
+    column_names[2],   # Third column remains the same
+    column_names[4],
+    column_names[5],   # Former fourth column becomes new sixth
+    column_names[3],
+    column_names[6],   # Former fifth column becomes new seventh
+    column_names[7],   # Former sixth column becomes new eighth
+    column_names[8],   # Former seventh column becomes new ninth
+    column_names[9],   # Former eighth column becomes new tenth
+    column_names[10],  # Former ninth column becomes new eleventh
+    column_names[11],  # Former twelfth column becomes new twelfth
+    column_names[12],  # Former thirteenth column becomes new thirteenth
+    column_names[13]   # Former fourteenth column becomes new fourteenth
+]
+df_pivot = df_pivot[new_column_order]
+
 print("--Datensatz vorbereitet--")
+
+for row in df_pivot.iterrows():
+    print(row)
 
 for col in df_pivot.columns:
     print(col)
+
+
 
 distinct_values = df_pivot['Ortsteil'].unique()
 print(distinct_values)

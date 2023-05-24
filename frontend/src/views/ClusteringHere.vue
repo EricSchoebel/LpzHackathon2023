@@ -29,7 +29,7 @@
         <v-text-field
                    v-model="anzahl"
                    :rules="[
-                       v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
+                       //v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
                        v=> v>0 || 'Die Anzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"

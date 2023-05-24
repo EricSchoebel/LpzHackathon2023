@@ -3,11 +3,11 @@
 
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
 from preparation import df_pivot
 import pandas as pd
 
 clean_df = df_pivot
-
 
 def dataframe_to_dict(dataframe):
     # to_dict method of Pandas DataFrame is used to convert the DataFrame to a list of dictionaries,
@@ -53,11 +53,10 @@ def testing():
 #   -> list of 1 (true) or 0 (false)
 """
 first two categories are just Ortsteil_ID and Ortsteil. Then:
-[Altenquote, Elektroautos, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Jugendquote, KitaKinder,
+[Altenquote, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Elektroautos, Jugendquote, KitaKinder,
  LebenszufriedenheitZufriedenheitsfaktor, PersönlichesEinkommen, Straftaten,
   WirtschaftlicheLageZufriedenheitsfaktor, WohnviertelZufriedenheitsfaktor, ZukunftsaussichtZufriedenheitsfaktor]
   
-CAUTION: this is the ordering in the dataframe! It does not match the display in the API call
 """
 
 def kmeansWithK(k, included_cols, dataframe):
@@ -69,8 +68,11 @@ def kmeansWithK(k, included_cols, dataframe):
     selected_cols = [col_names[i] for i, include in enumerate(included_cols) if include] # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
 
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)  # Scale the data
+
     kmeans = KMeans(n_clusters=k, n_init='auto', init='k-means++')  # 'k-means++' selects initial centroids in a smart way
-    kmeans.fit(X)
+    kmeans.fit(X_scaled)
     return kmeans.labels_ #list of the labels
 
 def kmeansWithoutK(included_cols, dataframe):
@@ -88,10 +90,13 @@ def determineOptimalK(included_cols, dataframe):
     selected_cols = [col_names[i] for i, include in enumerate(included_cols) if include]  # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
 
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)  # Scale the data
+
     silhouette_scores = []
     for i in range(2, 11): # 2 included, 11 excluded
-        kmeans = KMeans(n_clusters=i, n_init='auto', random_state=0) .fit(X)
-        score = silhouette_score(X, kmeans.labels_)
+        kmeans = KMeans(n_clusters=i, n_init='auto', random_state=0).fit(X_scaled)
+        score = silhouette_score(X_scaled, kmeans.labels_)
         silhouette_scores.append(score)
     optimal_k = silhouette_scores.index(max(silhouette_scores)) + 2
     return optimal_k
@@ -101,6 +106,10 @@ Further remarks (from https://scikit-learn.org/stable/modules/generated/sklearn.
 'n_init': Number of time the k-means algorithm will be run with different centroid seeds kmeans
 When n_init='auto', the number of runs depends on the value of init: 10 if using init='random', 1 if using init='k-means++'.
 """
+
+#testing
+#print(kmeansWithK(2, example, clean_df))
+#print(kmeansWithoutK(example, clean_df))
 
 # LOF noch hier einfuegen!
 # FIXME am Ende kann calculation.py vielleicht aufgeloest werden, wenn alle hier drin steht
