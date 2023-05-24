@@ -73,13 +73,13 @@ print(df.T)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Constructing and normalizing the relative path to the JSON file
-json_file_path_a = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'a.json'))
-json_file_path_b = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'b.json'))
-json_file_path_c = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'c.json'))
-json_file_path_d = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'd.json'))
-json_file_path_e = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'e.json'))
-json_file_path_f = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'f.json'))
-json_file_path_g = os.path.normpath(os.path.join(script_dir, '..', 'files', 'json_files', 'g.json'))
+json_file_path_a = os.path.join(script_dir, '..', 'files', 'json_files', 'a.json')
+json_file_path_b = os.path.join(script_dir, '..', 'files', 'json_files', 'b.json')
+json_file_path_c = os.path.join(script_dir, '..', 'files', 'json_files', 'c.json')
+json_file_path_d = os.path.join(script_dir, '..', 'files', 'json_files', 'd.json')
+json_file_path_e = os.path.join(script_dir, '..', 'files', 'json_files', 'e.json')
+json_file_path_f = os.path.join(script_dir, '..', 'files', 'json_files', 'f.json')
+json_file_path_g = os.path.join(script_dir, '..', 'files', 'json_files', 'g.json')
 
 # Load data from JSON files
 data = pd.read_json(json_file_path_a, orient='records')
@@ -156,10 +156,10 @@ df_pivot = df_pivot.reset_index()
 df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'KitaKinder',
                                      'Straftaten insgesamt': 'Straftaten',
                                      '   mit Elektromotor': 'Elektroautos',
-                                     'Lebenszufriedenheit': 'Lebenszufriedenheit_(Zufriedenheitsfaktor)',
-                                     'Wohnviertel':'Wohnviertel_(Zufriedenheitsfaktor)',
-                                     'Zukunftsaussicht':'Zukunftsaussicht_(Zufriedenheitsfaktor)',
-                                     'Wirtschaftliche Lage': 'WirtschaftlicheLage_(Zufriedenheitsfaktor)',
+                                     'Lebenszufriedenheit': 'LebenszufriedenheitZufriedenheitsfaktor',
+                                     'Wohnviertel':'WohnviertelZufriedenheitsfaktor',
+                                     'Zukunftsaussicht':'ZukunftsaussichtZufriedenheitsfaktor',
+                                     'Wirtschaftliche Lage': 'WirtschaftlicheLageZufriedenheitsfaktor',
                                      'ortsteil': 'Ortsteil',
                                      'ortsteil_id': 'Ortsteil_ID',
                                      'Durchschnittliche Haushaltsgröße':'DurchschnittlicheHaushaltsgröße',
@@ -223,10 +223,37 @@ for col in df_pivot.columns:
 
 #print(df_pivot.dtypes) #After
 
+column_names = df_pivot.columns.tolist()
+new_column_order = [
+    column_names[0],   # First column remains the same
+    column_names[1],   # Second column remains the same
+    column_names[2],   # Third column remains the same
+    column_names[4],
+    column_names[5],   # Former fourth column becomes new sixth
+    column_names[3],
+    column_names[6],   # Former fifth column becomes new seventh
+    column_names[7],   # Former sixth column becomes new eighth
+    column_names[8],   # Former seventh column becomes new ninth
+    column_names[9],   # Former eighth column becomes new tenth
+    column_names[10],  # Former ninth column becomes new eleventh
+    column_names[11],  # Former twelfth column becomes new twelfth
+    column_names[12],  # Former thirteenth column becomes new thirteenth
+    column_names[13]   # Former fourteenth column becomes new fourteenth
+]
+df_pivot = df_pivot[new_column_order]
+
 print("--Datensatz vorbereitet--")
+
+for row in df_pivot.iterrows():
+    print(row)
 
 for col in df_pivot.columns:
     print(col)
+
+
+
+distinct_values = df_pivot['Ortsteil'].unique()
+print(distinct_values)
 
 
 

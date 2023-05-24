@@ -2,7 +2,6 @@
     <Bubble class="bubblechart"
           
           :chart-options="chartOptions"
-          :chart-data="chartData"
           :chart-id="chartId"
           :dataset-id-key="datasetIdKey"
           :plugins="plugins"
@@ -28,24 +27,17 @@
         type: String,
         default: 'bubble-chart'
       },
-      /*anfang:{
-        type: String,
-        default:"",
-      },
-      ende:{
-        type: String,
-        default:"",
-      },
-      */
       anzahl: {
         type: String,
         default: "3",
       },
-      /*
-      rechnerSelect:{
+      orte:{ 
         type: Array,
       },
-      */
+      kategorie:{
+        type: Array,
+      },
+
       datasetIdKey: {
         type: String,
         default: 'label'
@@ -74,68 +66,155 @@
     methods:{
       //aktualisiert das Diagramm
       updateDiagramm(newData){
+
+      
         let b;
         let x;
 
-        let elektroautos = []
-        let altenquote = []
-        
-        
-        let durchschnittlicheHaushaltsgroesse = []
-        let durchschnittsalter = []
-        let jugendquote = []
-        let kitaKinder = []
-        let lebenszufriedenheitZufriedenheitsfaktor = []
-        let persoenlichesEinkommen = []
-        let straftaten = []
-        let wirtschaftlicheLageZufriedenheitsfaktor = []
-        let wohnviertelZufriedenheitsfaktor = []
-        let zukunftsaussichtZufriedenheitsfaktor = []
+        let Altenquote = []
+        let DurchschnittlicheHaushaltsgröße = []
+        let Durchschnittsalter = []
+        let Elektroautos = []
+        let Jugendquote = []
+        let KitaKinder = []
+        let LebenszufriedenheitZufriedenheitsfaktor = []
+        let PersönlichesEinkommen = []
+        let Straftaten = []
+        let WirtschaftlicheLageZufriedenheitsfaktor = []
+        let WohnviertelZufriedenheitsfaktor = []
+        let ZukunftsaussichtZufriedenheitsfaktor = []
 
-        let anzahlDia = [] //labels?
+        let annot = [] //labels?
         let ortsteil = []
 
+        let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
+                "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+                "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
+                "ZukunftsaussichtZufriedenheitsfaktor"]
+        
+        let ortsteillist =['Althen-Kleinpösna', 'Altlindenau', 'Anger-Crottendorf', 'Baalsdorf',
+                            'Burghausen-Rückmarsdorf', 'Böhlitz-Ehrenberg', 'Connewitz', 'Dölitz-Dösen',
+                            'Engelsdorf', 'Eutritzsch', 'Gohlis-Mitte', 'Gohlis-Nord', 'Gohlis-Süd',
+                            'Großzschocher', 'Grünau-Mitte', 'Grünau-Nord', 'Grünau-Ost',
+                            'Grünau-Siedlung', 'Hartmannsdorf-Knautnaundorf', 'Heiterblick',
+                            'Holzhausen', 'Kleinzschocher', 'Knautkleeberg-Knauthain', 'Lausen-Grünau',
+                            'Leutzsch', 'Liebertwolkwitz', 'Lindenau', 'Lindenthal', 'Lößnig',
+                            'Lützschena-Stahmeln', 'Marienbrunn', 'Meusdorf', 'Miltitz', 'Mockau-Nord',
+                            'Mockau-Süd', 'Möckern', 'Mölkau', 'Neulindenau', 'Neustadt-Neuschönefeld',
+                            'Paunsdorf', 'Plagwitz', 'Plaußig-Portitz', 'Probstheida',
+                            'Reudnitz-Thonberg', 'Schleußig', 'Schönau', 'Schönefeld-Abtnaundorf',
+                            'Schönefeld-Ost', 'Seehausen', 'Sellerhausen-Stünz', 'Stötteritz',
+                            'Südvorstadt', 'Thekla', 'Volkmarsdorf', 'Wahren', 'Wiederitzsch', 'Zentrum',
+                            'Zentrum-Nord', 'Zentrum-Nordwest', 'Zentrum-Ost', 'Zentrum-Süd',
+                            'Zentrum-Südost', 'Zentrum-West']
+
+        //put API-Data into variables 
         for(b in newData){
-          console.log("hier?")
-          elektroautos.push(newData[b].Elektroautos)
-          altenquote.push(newData[b].Altenquote)
-          durchschnittlicheHaushaltsgroesse.push(newData[b].DurchschnittlicheHaushaltsgröße)
-          durchschnittsalter.push(newData[b].durchschnittsalter)
-          jugendquote.push(newData[b].jugendquote)
-          kitaKinder.push(newData[b].kitaKinder)
-          lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].lebenszufriedenheitZufriedenheitsfaktor)
-          persoenlichesEinkommen.push(newData[b].persoenlichesEinkommen)
-          straftaten.push(newData[b].straftaten)
-          wirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].wirtschaftlicheLageZufriedenheitsfaktor)
-          wohnviertelZufriedenheitsfaktor.push(newData[b].wohnviertelZufriedenheitsfaktor)
-          zukunftsaussichtZufriedenheitsfaktor.push(newData[b].zukunftsaussichtZufriedenheitsfaktor)
+          //console.log("nun")
+          Altenquote.push(newData[b].Altenquote)
+          DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
+          Durchschnittsalter.push(newData[b].Durchschnittsalter)
+          Elektroautos.push(newData[b].Elektroautos)
+          Jugendquote.push(newData[b].Jugendquote)
+          KitaKinder.push(newData[b].KitaKinder)
+          LebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
+          PersönlichesEinkommen.push(newData[b].PersönlichesEinkommen)
+          Straftaten.push(newData[b].Straftaten)
+          WirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].WirtschaftlicheLageZufriedenheitsfaktor)
+          WohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
+          ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
       
-          anzahlDia.push(newData[b].label) 
+          annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
-          
+
           //war vorher innerhalb noch .toString()
         }
+
+
+
+        console.log("Elektroautos:")
+        console.log(Elektroautos)
+        console.log("Jugendquote:")
+        console.log(Jugendquote)
+        console.log("KitaKinder:")
+        console.log(KitaKinder)
+        //console.log(ortsteil)
+        //let moin = this.kategorie
+        //console.log(moin)
+
+        //at first data for bubble chart is empty
         this.chartData = {
           datasets:[]
         }
-        for (x in ortsteil){
+        
+        //fill data as desired
+        //only if two categories are selected in combobox
+        if ((this.kategorie).length === 2){
+          let firstCateg = this.kategorie[0]
+          let secondCateg = this.kategorie[1]
+          console.log("if, first:")
+          console.log(firstCateg)
+          console.log("if, second:")
+          console.log(secondCateg)
+ 
+          for (x in ortsteil){
           this.chartData.datasets.push(
-              {
-                label: ortsteil[x],
-                backgroundColor: this.colors[anzahlDia[x]],
+              {  
+                label: ortsteil[x], //point's identifier in the diagramm
+                backgroundColor: this.colors[annot[x]], //real label/anotation
                 data:[
-                  {
-                    x:elektroautos[x],
-                    y:altenquote[x],
-                    r:10,
+                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
+                    x:(eval(firstCateg))[x],
+                    y:(eval(secondCateg))[x], 
+                    r:10, // point's radius
                   }
                 ]
               }
           )
         }
-        
+          
+        }
+        else{
+          //nur Text anzeigen
+          let firstCateg = this.kategorie[0]
+          let secondCateg = this.kategorie[1]
+          console.log("else, first:")
+          console.log(firstCateg)
+          console.log("else, second:")
+          console.log(secondCateg)
+
+ 
+          for (x in ortsteil){
+          this.chartData.datasets.push(
+              {  
+                label: ortsteil[x], //point's identifier in the diagramm
+                backgroundColor: this.colors[annot[x]], //real label/anotation
+                data:[
+                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
+                    x:(window[firstCateg])[x], //hier stand vorher sowas wie  x:elektroautos[x]
+                    y:(window[secondCateg])[x], 
+                    r:10, // point's radius
+                  }
+                ]
+              }
+          )
+        }
+
+
+
+        }
+
+
+
+      
+         
        // mit eigenen Werten testen
-       
+      
+       this.$emit("orte", ortsteillist)
+       this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
+
+
+
       },
       
       //lädt die Daten von der API
@@ -143,13 +222,62 @@
         this.loaded = false
         try {
 
+          //HIER muss der spezifische API-call hin für die ausgewählten Ortsteile und Kategorien
+          const desired_ortsteile = this.orte
+          const desired_kategorien = this.kategorie
+
+          const kategorielist_standard =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
+                "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+                "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
+                "ZukunftsaussichtZufriedenheitsfaktor"]
+        
+          const ortsteillist_standard =['Althen-Kleinpösna', 'Altlindenau', 'Anger-Crottendorf', 'Baalsdorf',
+                            'Burghausen-Rückmarsdorf', 'Böhlitz-Ehrenberg', 'Connewitz', 'Dölitz-Dösen',
+                            'Engelsdorf', 'Eutritzsch', 'Gohlis-Mitte', 'Gohlis-Nord', 'Gohlis-Süd',
+                            'Großzschocher', 'Grünau-Mitte', 'Grünau-Nord', 'Grünau-Ost',
+                            'Grünau-Siedlung', 'Hartmannsdorf-Knautnaundorf', 'Heiterblick',
+                            'Holzhausen', 'Kleinzschocher', 'Knautkleeberg-Knauthain', 'Lausen-Grünau',
+                            'Leutzsch', 'Liebertwolkwitz', 'Lindenau', 'Lindenthal', 'Lößnig',
+                            'Lützschena-Stahmeln', 'Marienbrunn', 'Meusdorf', 'Miltitz', 'Mockau-Nord',
+                            'Mockau-Süd', 'Möckern', 'Mölkau', 'Neulindenau', 'Neustadt-Neuschönefeld',
+                            'Paunsdorf', 'Plagwitz', 'Plaußig-Portitz', 'Probstheida',
+                            'Reudnitz-Thonberg', 'Schleußig', 'Schönau', 'Schönefeld-Abtnaundorf',
+                            'Schönefeld-Ost', 'Seehausen', 'Sellerhausen-Stünz', 'Stötteritz',
+                            'Südvorstadt', 'Thekla', 'Volkmarsdorf', 'Wahren', 'Wiederitzsch', 'Zentrum',
+                            'Zentrum-Nord', 'Zentrum-Nordwest', 'Zentrum-Ost', 'Zentrum-Süd',
+                            'Zentrum-Südost', 'Zentrum-West']
+          
+          const ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
+          const kategorienBinaryList = kategorielist_standard.map(p => desired_kategorien.includes(p) ? 1 : 0);
+
+          const clusteranzahl = this.anzahl
+
+          /* Testing
+          let ortsteileBinaryList = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                                    , 1, 1, 1, 0, 1, 0, 0, 0, 0, 0,
+                                     0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 
+                                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+                                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                     0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+          let kategorienBinaryList = [1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+          */
+
+          let ortsteileBinaryString = ortsteileBinaryList.join('');
+          let kategorienBinaryString = kategorienBinaryList.join('');
+
+
           //needs to deliver which categories and how many clusters (or)
           this.bubbleChartData = await (await fetch(
             //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
-            "http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
+            //"http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
+            "http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl="+clusteranzahl
+            +"&ortsteile_string="+ortsteileBinaryString
+            +"&kategorien_string="+kategorienBinaryString)).json()
             ;
             //console.log(this.bubbleChartData)
-            this.updateDiagramm(this.bubbleChartData)
+            //Test: http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000000101111111111100000000000000000011111&kategorien_string=111111111111
+          
+          this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
           console.error(e)
@@ -171,42 +299,48 @@
       anzahl:function(){
         this.loadData()
       },
+      orte:function(){
+        this.loadData()
+      },
+      kategorie:function(){
+        this.loadData()
+      },
     },
   
     data(){
       return{
         loaded:false,
-        colors: ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#B71C1C', '#880E4F', '#4A148C', '#311B92', '#1A237E', '#C62828', '#AD1457', '#6A1B9A', '#4527A0', '#283593', '#D32F2F', '#C2185B', '#7B1FA2', '#512DA8', '#303F9F', '#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0', '#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#EF9A9A', '#F48FB1', '#CE93D8', '#B39DDB', '#9FA8DA', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#1565C0', '#0277BD', '#00838F', '#00695C', '#2E7D32', '#1976D2', '#0288D1', '#0097A7', '#00796B', '#388E3C', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#90CAF9', '#81D4FA', '#80DEEA', '#80CBC4', '#A5D6A7', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#558B2F', '#9E9D24', '#F9A825', '#FF8F00', '#EF6C00', '#689F38', '#AFB42B', '#FBC02D', '#FFA000', '#F57C00', '#7CB342', '#C0CA33', '#FDD835', '#FFB300', '#FB8C00', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726', '#AED581', '#DCE775', '#FFF176', '#FFD54F', '#FFB74D'],
+        colors: ['#4527A0', '#F44336', '#FFF176', '#66BB6A', '#9C27B0', '#FFB74D', '#AED581', '#DCE775', '#FFD54F', '#4527A0', '#283593', '#D32F2F', '#C2185B', '#7B1FA2', '#512DA8', '#303F9F', '#B71C1C', '#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0', '#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#EF9A9A', '#F48FB1', '#CE93D8', '#B39DDB', '#9FA8DA', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#1565C0', '#0277BD', '#00838F', '#00695C', '#2E7D32', '#1976D2', '#0288D1', '#0097A7', '#00796B', '#388E3C', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#90CAF9', '#81D4FA', '#80DEEA', '#80CBC4', '#A5D6A7', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#558B2F', '#9E9D24', '#F9A825', '#FF8F00', '#EF6C00', '#689F38', '#AFB42B', '#FBC02D', '#FFA000', '#F57C00', '#7CB342', '#C0CA33', '#FDD835', '#FFB300', '#673AB7', '#3F51B5', '#FB8C00', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726'],
         chartData:{
           datasets:[]
         },
         chartOptions:{
           responsive:true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           plugins:{
             legend: {
-              display: false,
+              display: true,
             },
             title:{
-              display: false,
+              display: true,
             },
           },
           scales: {
             x: {
-              display: false,
+              display: true,
               title: {
-                display: false,
+                display: true,
                 text:'durchschnittlicheHaushaltsgroesse'
               },
-              suggestedMin: 0,
+              //suggestedMin: 0,
             },
             y: {
-              display: false,
+              display: true,
               title: {
-                display: false,
+                display: true,
                 text: 'altenquote'
               },
-              suggestedMin: 0,
+              //suggestedMin: 0,
             }
           }
         }
