@@ -176,6 +176,23 @@
         }
         else{
           //nur Text anzeigen
+          let ende = (this.kategorie).length
+          //let numberList = [];
+          for (let i = 1; i <= ende; i++) {
+              
+
+
+
+
+
+
+            
+          } 
+          //console.log(numberList);
+          
+          
+          
+          
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
           console.log("else, first:")
@@ -183,7 +200,7 @@
           console.log("else, second:")
           console.log(secondCateg)
 
- 
+          /*
           for (x in ortsteil){
           this.chartData.datasets.push(
               {  
@@ -198,8 +215,8 @@
                 ]
               }
           )
-        }
-
+          }
+          */
 
 
         }
