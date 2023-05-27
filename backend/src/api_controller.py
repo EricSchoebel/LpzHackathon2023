@@ -46,6 +46,7 @@ def get_kmeansWithk_with_inputs():
 # Test with:
 # http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000010100000000000000000000000000000000000&kategorien_string=111000010000
 
+
 @api_controller.route("get/kmeansWithoutk") # /get/kmeansWithoutk?param1=value1&param2=value2
 def get_kmeansWithoutk_with_inputs():
     ortsteile_string = request.args.get("ortsteile_string")
@@ -64,6 +65,24 @@ def get_kmeansWithoutk_with_inputs():
 
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))  #hint: hiighest label+1 gives you clusteranzahl for frontend
 
+@api_controller.route("get/lof") # /get/lof?param1=value1&param2=value2
+def get_lof_with_inputs():
+    ortsteile_string = request.args.get("ortsteile_string") # string with exactly 63 characters
+    kategorien_string = request.args.get("kategorien_string") # string with exactly 12 characters
+
+    included_ortsteile = string_decoder(ortsteile_string) #tells us which rows (from 0 to 62)
+    included_kategorien = [False, False] + string_decoder(kategorien_string) #tells us which columns
+    relevant_ortsteile_dataframe = create_partial_rows_dataframe(clean_df, included_ortsteile)
+
+    labels = detectOutliersLOF(included_kategorien, relevant_ortsteile_dataframe)
+
+    keep_ortsteil = included_kategorien
+    keep_ortsteil[1] = True
+    relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
+
+    return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))
+# Test with:
+# http://127.0.0.1:5000/get/lof?ortsteile_string=111111111100000000000000000000000000000000000000000000000000000&kategorien_string=100000011000
 
 
 

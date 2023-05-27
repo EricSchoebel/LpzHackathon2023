@@ -20,12 +20,12 @@
   ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale)
   
   export default {
-    name: 'BubbleChart',
+    name: 'AnomalieChart',
     components: {Bubble},
     props: {
       chartId: {
         type: String,
-        default: 'bubble-chart'
+        default: 'anomalie-chart'
       },
       anzahl: {
         type: String,
@@ -181,24 +181,24 @@
           for (let i = 1; i <= ende; i++) {
               
 
-            console.log("hallo");
+
+            console.error("a")
 
 
 
-
-
+            
           } 
           //console.log(numberList);
           
           
           
           
-          let firstCateg = this.kategorie[0]
-          let secondCateg = this.kategorie[1]
-          console.log("else, first:")
-          console.log(firstCateg)
-          console.log("else, second:")
-          console.log(secondCateg)
+          //let firstCateg = this.kategorie[0]
+          //let secondCateg = this.kategorie[1]
+          //console.log("else, first:")
+          //console.log(firstCateg)
+          //console.log("else, second:")
+          //console.log(secondCateg)
 
           /*
           for (x in ortsteil){
@@ -267,7 +267,7 @@
           const ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
           const kategorienBinaryList = kategorielist_standard.map(p => desired_kategorien.includes(p) ? 1 : 0);
 
-          const clusteranzahl = this.anzahl
+          //const clusteranzahl = this.anzahl
 
           /* Testing
           let ortsteileBinaryList = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1
@@ -287,10 +287,9 @@
           this.bubbleChartData = await (await fetch(
             //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
             //"http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
-            "http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl="+clusteranzahl
-            +"&ortsteile_string="+ortsteileBinaryString
+            "http://127.0.0.1:5000/get/lof?ortsteile_string="+ortsteileBinaryString
             +"&kategorien_string="+kategorienBinaryString)).json()
-            ;
+            ; 
             //console.log(this.bubbleChartData)
             //Test: http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000000101111111111100000000000000000011111&kategorien_string=111111111111
           
@@ -327,7 +326,7 @@
     data(){
       return{
         loaded:false,
-        colors: ['#4527A0', '#F44336', '#FFF176', '#66BB6A', '#9C27B0', '#FFB74D', '#AED581', '#DCE775', '#FFD54F', '#4527A0', '#283593', '#D32F2F', '#C2185B', '#7B1FA2', '#512DA8', '#303F9F', '#B71C1C', '#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0', '#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#EF9A9A', '#F48FB1', '#CE93D8', '#B39DDB', '#9FA8DA', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#1565C0', '#0277BD', '#00838F', '#00695C', '#2E7D32', '#1976D2', '#0288D1', '#0097A7', '#00796B', '#388E3C', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#90CAF9', '#81D4FA', '#80DEEA', '#80CBC4', '#A5D6A7', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#558B2F', '#9E9D24', '#F9A825', '#FF8F00', '#EF6C00', '#689F38', '#AFB42B', '#FBC02D', '#FFA000', '#F57C00', '#7CB342', '#C0CA33', '#FDD835', '#FFB300', '#673AB7', '#3F51B5', '#FB8C00', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726'],
+        colors: ['#66BB6A', '#F44336', '#4527A0', '#FFF176', '#9C27B0', '#FFB74D', '#AED581', '#DCE775', '#FFD54F', '#4527A0', '#283593', '#D32F2F', '#C2185B', '#7B1FA2', '#512DA8', '#303F9F', '#B71C1C', '#E53935', '#D81B60', '#8E24AA', '#5E35B1', '#3949AB', '#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0', '#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#EF9A9A', '#F48FB1', '#CE93D8', '#B39DDB', '#9FA8DA', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#1565C0', '#0277BD', '#00838F', '#00695C', '#2E7D32', '#1976D2', '#0288D1', '#0097A7', '#00796B', '#388E3C', '#1E88E5', '#039BE5', '#00ACC1', '#00897B', '#43A047', '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#90CAF9', '#81D4FA', '#80DEEA', '#80CBC4', '#A5D6A7', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#558B2F', '#9E9D24', '#F9A825', '#FF8F00', '#EF6C00', '#689F38', '#AFB42B', '#FBC02D', '#FFA000', '#F57C00', '#7CB342', '#C0CA33', '#FDD835', '#FFB300', '#673AB7', '#3F51B5', '#FB8C00', '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726'],
         chartData:{
           datasets:[]
         },
