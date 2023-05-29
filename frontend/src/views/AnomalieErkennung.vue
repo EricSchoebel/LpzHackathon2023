@@ -14,6 +14,9 @@
             label="Ortsteile"
             multiple
             chips
+            :rules="[
+                       v=> selectOrte.length >3 || 'mindestens 4 Ortsteile auswählen'
+                   ]"
            
           ></v-combobox>
   
@@ -24,6 +27,9 @@
             label="Kategorien"
             multiple
             chips
+            :rules="[
+                       v=> selectKategorie.length >0 || 'mindestens eine Kategorie auswählen'
+                   ]"
           ></v-combobox>
   
             

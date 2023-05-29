@@ -30,7 +30,7 @@
                    v-model="anzahl"
                    :rules="[
                        //v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
-                       v=> v>0 || 'Die Anzahl muss größer 0 sein'
+                       v=> v>0 || 'Clusteranzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"
                    variant="outlined"
@@ -105,7 +105,7 @@ export default {
       itemsOrte: ["hi"],
       selectKategorie: [],
       itemsKategorie: [],
-      anzahl:"3",
+      anzahl:"2",
     }
   },
   methods:{
