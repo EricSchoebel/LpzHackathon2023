@@ -13,7 +13,7 @@ Entwickelt wurde *"MIRA"*, ein *KI-Analysetool für die Stadt Leipzig*. Auf Basi
 Im Allgemeinen wird als Grundlage ein Datensatz aus dem Jahr 2021 erstellt, bei dem sich Informationen zu den 63 Leipziger Orsteilen bezüglich 12 Kategorien, wie bspw. der Anzahl an Elektroautos oder die Anzahl der begangenen Straftaten, darlegen. Der Nutzer kann die für ihn relevanten Ortsteile und Kategorien auf der Website auswählen und nach Belieben analysieren. Datengrundlage bildete das Leipziger Informationssystem.
 
 1. Wertevergleich
-<p>Unter "Wertevergleich" können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden. Dieses einführende Feature dient dem Zweck, sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können.</p>
+    Unter "Wertevergleich" können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden. Dieses einführende Feature dient dem Zweck, sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können.
 
 2. Clustering
 
