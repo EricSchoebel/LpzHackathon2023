@@ -10,15 +10,18 @@ Entwickelt wurde *"MIRA"*, ein *KI-Analysetool für die Stadt Leipzig*. Auf Basi
 
 **Features**
 
-Im Allgemeinen wird als Grundlage ein Datensatz aus dem Jahr 2021 erstellt, bei dem sich Informationen zu den 63 Leipziger Orsteilen bezüglich 12 Kategorien, wie bspw. der Anzahl an Elektroautos oder die Anzahl der begangenen Straftaten, darlegen. Der Nutzer kann die für ihn relevanten Orsteile und Kategorien auf der Website auswählen und nach Belieben analysieren. Datengrundlage bildete das Leipziger Informationssystem.
+Im Allgemeinen wird als Grundlage ein Datensatz aus dem Jahr 2021 erstellt, bei dem sich Informationen zu den 63 Leipziger Orsteilen bezüglich 12 Kategorien, wie bspw. der Anzahl an Elektroautos oder die Anzahl der begangenen Straftaten, darlegen. Der Nutzer kann die für ihn relevanten Ortsteile und Kategorien auf der Website auswählen und nach Belieben analysieren. Datengrundlage bildete das Leipziger Informationssystem.
 
 1. Wertevergleich
+
 Unter "Wertevergleich" können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden. Dieses einführende Feature dient dem Zweck, sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können.
 
 2. Clustering
+
 Unter "Clustering" kann analysiert werden, wo sich Orsteile gemäß gewissen Kategorien zu Gruppen ähnlicher Punkte ballen. Die Anzahl der Cluster kann selbst gewählt oder vom Programm optimiert werden. Das Ergebnis kann farblich gekennzeichnet graphisch veranschaulicht werden, insofern zwei Kategorien ausgewählt wurden. Andernfalls erfolgt eine textliche Ausgabe. Der zugrunde liegende Clustering-Algorithmus ist K-Means aus dem Bereich der Partitionierenden Clusteranalyse.
 
 3. Anomalieerkennung
+
 Unter "Anomalieerkennung" können Ausreißer in den Daten algorithmisch identifiziert werden. Wie zuvor können Orsteile und Kategorien gewählt werden, für erstere muss die Anzahl mindestens 4 betragen. Für den Fall von zwei Kategorien kann das Ergebnis wieder graphisch veranschaulicht werden. Der zugrunde liegende Algorithmus ist Local Outlier Factor (LOF) aus dem Bereich der Anomaly Detection.
 
 **Technisches**
