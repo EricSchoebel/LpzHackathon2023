@@ -2,7 +2,7 @@
 ## Thema: Künstliche Intelligenz für die Stadtentwicklung
 ### MIRA - das KI-Analysetool für die Stadt Leipzig
 
-Verfasser: Eric Schöbel
+von Eric Schöbel
 
 Das vorliegende Projekt entstand im Rahmen des Leipziger Open Data Hackathons 2023. Im Zuge des vom Amt für Statistik und Wahlen der Stadt Leipzig initiierten Aufrufs wurde das Thema 1: "Künstliche Intelligenz für die Stadtentwicklung" gewählt.
 
