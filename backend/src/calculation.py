@@ -102,6 +102,10 @@ def detectOutliersLOF(included_cols, dataframe):
                      include]  # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
 
+    # Check if it has more than 4 rows and more than 1 column
+    if X.shape[0] <= 4 and X.shape[1] <= 1:
+        return
+
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)  # Scale the data
 

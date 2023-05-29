@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 from preparation import df_pivot
+from sklearn.neighbors import LocalOutlierFactor
 import pandas as pd
 
 clean_df = df_pivot
@@ -34,19 +35,6 @@ def create_partial_cols_dataframe(dataframe, boolean_list):  #reduce columns
 
 
 
-
-def testing():
-    test_dict = {
-            'name': 'Herbert',
-            'coolness': 19
-            }
-    return test_dict
-
-
-
-
-
-#TAKEN FROM CALCULATION:
 
 # k = number of clusters
 # included_cols = which dimensions should be taken into account (maximum 12)
@@ -111,11 +99,47 @@ When n_init='auto', the number of runs depends on the value of init: 10 if using
 #print(kmeansWithK(2, example, clean_df))
 #print(kmeansWithoutK(example, clean_df))
 
-# LOF noch hier einfuegen!
-# FIXME am Ende kann calculation.py vielleicht aufgeloest werden, wenn alle hier drin steht
+#anomaly detection
+#detect outliers with LOF (Local Outlier Factor)
+# 1 for outliers, 0 for inliers
+def detectOutliersLOF(included_cols, dataframe):
+
+    shape = dataframe.shape # shape[0] is rows , shape[1] is columns
+    col_names = dataframe.columns.tolist()  # get column names from DataFrame
+    selected_cols = [col_names[i] for i, include in enumerate(included_cols) if
+                     include]  # select relevant columns based on included_cols list
+    X = dataframe[selected_cols].to_numpy()
+
+    if shape[0]<=3 or shape[1]<1 or shape[0] is None or shape[1] is None: #at least 4 Ortsteile and 1 Kategorie is required
+        return None
+
+    else:
+
+        scaler = StandardScaler()
+        X_scaled = scaler.fit_transform(X)  # Scale the data
+
+        lof = LocalOutlierFactor(n_neighbors=10, contamination='auto', novelty=False) # n_neighbors = k  is crucial parameter, default was k=20
+        lof.fit(X_scaled)
+
+        # Predict the outlier scores
+        outlier_scores = lof.negative_outlier_factor_
+        #print(outlier_scores)
+        # Set a threshold for outlier detection
+        threshold = -1.5
+        # Generate labels (1 for outliers, 0 for inliers)
+        labels = [1 if score < threshold else 0 for score in outlier_scores]
+
+        #return label_adder(dataframe, labels)
+        return labels
 
 
 
+def testing():
+    test_dict = {
+            'name': 'Herbert',
+            'coolness': 19
+            }
+    return test_dict
 
 
 

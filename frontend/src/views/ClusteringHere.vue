@@ -30,7 +30,7 @@
                    v-model="anzahl"
                    :rules="[
                        //v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
-                       v=> v>0 || 'Die Anzahl muss größer 0 sein'
+                       v=> v>0 || 'Clusteranzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"
                    variant="outlined"
@@ -61,8 +61,12 @@
                 <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
-
-
+        
+         <!-- 
+         <div v-if="this.selectKategorie.length != 2">
+            <p>Text Length of itemsKategorie: {{ this.selectKategorie.length }}</p>
+          </div>
+        -->
 
          <v-row class="ma-5">
            <v-col>
@@ -101,7 +105,7 @@ export default {
       itemsOrte: ["hi"],
       selectKategorie: [],
       itemsKategorie: [],
-      anzahl:"3",
+      anzahl:"2",
     }
   },
   methods:{
