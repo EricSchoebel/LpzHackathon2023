@@ -53,7 +53,8 @@
                  <h2>Anomalieerkennung mittels Künstlicher Intelligenz</h2>
                  <v-card-text>.... Im Folgenden können Sie über Anomalieerkennung Aureißer ....mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
                   Wählen Sie die Ortsteile, die Kategorien.                                                      
-                  <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
+                  <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. "Normale" Ortsteile sind grün gefärbt, Ausreißer sind rot markiert.
+                     Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
              </v-col>
            </v-row>
           
