@@ -25,7 +25,6 @@ def get_kmeans_all_data_two_clusters():
 
 # idea: which rows (orsteile) and columns (kategorien) the kmeans is based on, is delivered via encoded strings,
 # e.g. kategorien_string = "111000100111"
-
 @api_controller.route("get/kmeansWithk") # /get/kmeansWithk?param1=value1&param2=value2&param3=value3
 def get_kmeansWithk_with_inputs():
     k = int(request.args.get("clusteranzahl")) # just a number
@@ -44,8 +43,8 @@ def get_kmeansWithk_with_inputs():
     relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))
-# Test with:
-# http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000010100000000000000000000000000000000000&kategorien_string=111000010000
+    # Test with:
+    # http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000010100000000000000000000000000000000000&kategorien_string=111000010000
 
 @api_controller.route("get/kmeansWithoutk") # /get/kmeansWithoutk?param1=value1&param2=value2
 def get_kmeansWithoutk_with_inputs():
@@ -84,8 +83,8 @@ def get_lof_with_inputs():
     relevant_ortsteile_cols_dataframe = create_partial_cols_dataframe(relevant_ortsteile_dataframe, keep_ortsteil)
 
     return jsonify(dataframe_to_dict(label_adder(relevant_ortsteile_cols_dataframe, labels)))
-# Test with:
-# http://127.0.0.1:5000/get/lof?ortsteile_string=111111111100000000000000000000000000000000000000000000000000000&kategorien_string=100000011000
+    # Test with:
+    # http://127.0.0.1:5000/get/lof?ortsteile_string=111111111100000000000000000000000000000000000000000000000000000&kategorien_string=100000011000
 
 
 
