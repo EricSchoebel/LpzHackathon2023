@@ -12,11 +12,12 @@
   <main>
     <div class="image-container">
     <img
-      :src="require('@/assets/NeuesRathausFuenf.jpg')"
+      :src="require('@/assets/NeuesRathausDrei.jpg')"
       alt="Foto der Stadt Leipzig"
       class="image"
     >
   </div>
+  <div class="caption">Foto: © Stadt Leipzig</div>
 
   </main>
   
@@ -39,6 +40,12 @@
 .image {
   max-width: 100%;
   max-height: 70%;
+}
+.caption {
+  text-align: right;
+  margin-top: 4px;
+  font-style: italic;
+  margin-right: 20px;
 }
 
 
