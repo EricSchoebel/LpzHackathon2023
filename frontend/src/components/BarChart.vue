@@ -1,8 +1,8 @@
 <template>
     <Bar class="barchart"
          
-         :chartNumber="chartNumber"
-         :chart-options="chartOptions"
+         :Number="chartNumber"
+         :options="chartOptions"
 
 
          :data="chartData"

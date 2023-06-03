@@ -28,10 +28,12 @@
     <main>
         
             <BarChart
-                :orte="this.selectOrte"
-                :kategorie="this.selectKategorie"
-                @kategorie="kategorie()"
-                @orte="orte()" 
+                    ref="barChart"
+                   :anzahl="this.anzahl"
+                   :orte="this.selectOrte"
+                   :kategorie="this.selectKategorie"
+                   @kategorie="handleKategorie" 
+                   @orte="handleOrte" 
             >
 
             </BarChart>
@@ -49,17 +51,14 @@
     import BarChart from "@/components/BarChart"
     
     export default{
-        components: {
-            BarChart,
-        },
+        components: {BarChart },
         data () {
             return {
                drawer:true,
                selectOrte: [],
-               itemsOrte: [],
+               itemsOrte: ["hi"],
                selectKategorie: [],
                itemsKategorie: [],
-
             }
         },
         methods:{
