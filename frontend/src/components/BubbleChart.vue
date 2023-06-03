@@ -158,6 +158,8 @@
           console.log(secondCateg)
  
           for (x in ortsteil){
+            console.log("pauls:")
+          console.log(annot[x])
           this.chartData.datasets.push(
               {  
                 label: ortsteil[x], //point's identifier in the diagramm
@@ -229,7 +231,7 @@
       
        this.$emit("orte", ortsteillist)
        this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
-
+       this.$emit("annotliste", annot)
 
 
       },
