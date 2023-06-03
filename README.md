@@ -6,7 +6,7 @@ von Eric Schöbel
 
 Das vorliegende Projekt entstand im Rahmen des Leipziger Open Data Hackathons 2023. Im Zuge des vom Amt für Statistik und Wahlen der Stadt Leipzig initiierten Aufrufs wurde das Thema 1: "Künstliche Intelligenz für die Stadtentwicklung" gewählt.
 
-Entwickelt wurde *"MIRA"*, ein *KI-Analysetool für die Stadt Leipzig*. Auf Basis von Machine-Learning-Algorithmen aus dem Bereich Unsupervised Learning können reale, öffentlich verfügbare Daten für das Stadtgebiet Leipzig aus dem Jahr 2021 live durch den Nutzer ausgewertet werden. Das als Webanwendung konzipierte Programm bietet Features zu deskriptivem Wertevergleich, Clustering und Anomalieerkennung. 
+Entwickelt wurde *"MIRA"* (japanisch für "Spiegel"), ein *KI-Analysetool für die Stadt Leipzig*. Auf Basis von Machine-Learning-Algorithmen aus dem Bereich Unsupervised Learning können reale, öffentlich verfügbare Daten für das Stadtgebiet Leipzig aus dem Jahr 2021 live durch den Nutzer ausgewertet werden. Das als Webanwendung konzipierte Programm bietet Features zu deskriptivem Wertevergleich, Clustering und Anomalieerkennung. 
 
 **Features**
 
