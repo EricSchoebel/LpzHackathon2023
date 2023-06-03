@@ -56,8 +56,8 @@
          <v-row class="ma-5">
            <v-col>
                <h2>Clustering mittels Künstlicher Intelligenz</h2>
-               <v-card-text>Im Folgenden können Sie mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
-                Wählen Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl. Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
+               <v-card-text>Im Folgenden kann analysiert werden, wo sich Ortsteile gemäß gewissen Kategorien zu Gruppen ähnlicher Punkte ballen ("clustern").<p></p>
+               Nutzen Sie das eingebautes Machine-Learning-Feature, indem Sie Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl wählen.<p></p> Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
                 <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
