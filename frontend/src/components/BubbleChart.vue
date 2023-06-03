@@ -1,8 +1,8 @@
 <template>
     <Bubble class="bubblechart"
           
-          :chart-options="chartOptions"
-          :chart-id="chartId"
+          :options="chartOptions"
+          :id="chartId"
           :dataset-id-key="datasetIdKey"
           :plugins="plugins"
           :css-classes="cssClasses"
@@ -61,6 +61,9 @@
       plugins: {
         type: Object,
         default: () => {}
+      },
+      optimieren:{
+        type: Boolean,
       }
     },
     methods:{
@@ -132,12 +135,12 @@
 
 
 
-        console.log("Elektroautos:")
-        console.log(Elektroautos)
-        console.log("Jugendquote:")
-        console.log(Jugendquote)
-        console.log("KitaKinder:")
-        console.log(KitaKinder)
+        //console.log("Elektroautos:")
+        //console.log(Elektroautos)
+        //console.log("Jugendquote:")
+        //console.log(Jugendquote)
+        //console.log("KitaKinder:")
+        //console.log(KitaKinder)
         //console.log(ortsteil)
         //let moin = this.kategorie
         //console.log(moin)
@@ -152,12 +155,14 @@
         if ((this.kategorie).length === 2){
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
-          console.log("if, first:")
-          console.log(firstCateg)
-          console.log("if, second:")
-          console.log(secondCateg)
+          //console.log("if, first:")
+          //console.log(firstCateg)
+          //console.log("if, second:")
+          //console.log(secondCateg)
  
           for (x in ortsteil){
+            //console.log("pauls:")
+            //console.log(annot[x])
           this.chartData.datasets.push(
               {  
                 label: ortsteil[x], //point's identifier in the diagramm
@@ -195,10 +200,10 @@
           
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
-          console.log("else, first:")
-          console.log(firstCateg)
-          console.log("else, second:")
-          console.log(secondCateg)
+          //console.log("else, first:")
+          console.log(firstCateg+secondCateg+"EGAAAL")
+          //console.log("else, second:")
+          //console.log(secondCateg)
 
           /*
           for (x in ortsteil){
@@ -229,7 +234,7 @@
       
        this.$emit("orte", ortsteillist)
        this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
-
+       this.$emit("annotliste", annot)
 
 
       },
@@ -282,24 +287,43 @@
           let ortsteileBinaryString = ortsteileBinaryList.join('');
           let kategorienBinaryString = kategorienBinaryList.join('');
 
-
-          //needs to deliver which categories and how many clusters (or)
-          this.bubbleChartData = await (await fetch(
-            //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
-            //"http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
-            "http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl="+clusteranzahl
-            +"&ortsteile_string="+ortsteileBinaryString
-            +"&kategorien_string="+kategorienBinaryString)).json()
-            ;
-            //console.log(this.bubbleChartData)
-            //Test: http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000000101111111111100000000000000000011111&kategorien_string=111111111111
+          if (this.optimieren === true){
+              
+                this.bubbleChartData = await (await fetch(
+              "http://127.0.0.1:5000/get/kmeansWithoutk?"
+                +"ortsteile_string="+ortsteileBinaryString
+                +"&kategorien_string="+kategorienBinaryString)).json()
+                ;
+                console.log("ohne k")
           
+              }
+          else{
+
+            //needs to deliver which categories and how many clusters (or)
+            this.bubbleChartData = await (await fetch(
+                //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
+                //"http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
+                "http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl="+clusteranzahl
+                +"&ortsteile_string="+ortsteileBinaryString
+                +"&kategorien_string="+kategorienBinaryString)).json()
+                ;
+                console.log("mit k")
+                //console.log(this.bubbleChartData)
+                //Test: http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000000101111111111100000000000000000011111&kategorien_string=111111111111
+          
+          
+          }
           this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
           console.error(e)
         }
       },
+      refresh(val){
+          if (val=="true"){
+            this.loadData()
+          }
+      }
     },
     watch:{ //läuft die ganze Zeit
       //prüft, ob sich der Anfang ändert
@@ -336,10 +360,10 @@
           maintainAspectRatio: true,
           plugins:{
             legend: {
-              display: true,
+              display: false,
             },
             title:{
-              display: true,
+              display: false,
             },
           },
           scales: {
@@ -347,7 +371,7 @@
               display: true,
               title: {
                 display: true,
-                text:'durchschnittlicheHaushaltsgroesse'
+                text:'Erst ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             },
@@ -355,7 +379,7 @@
               display: true,
               title: {
                 display: true,
-                text: 'altenquote'
+                text: 'Zweit ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             }

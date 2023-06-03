@@ -14,7 +14,15 @@
           label="Ortsteile"
           multiple
           chips
-        ></v-combobox>
+          >
+                  <template v-slot:prepend-item>
+                  <v-checkbox
+                    v-model="selectAll"
+                    label="alle auswählen"
+                    @click ="toggleSelectAll"
+                  ></v-checkbox>
+                  </template>
+        </v-combobox>
 
         <v-card-title>Kategorien auswählen:</v-card-title>
         <v-combobox
@@ -36,9 +44,23 @@
                    variant="outlined"
                    class="px-5 pb-3"
                    type="number"
+                   :disabled="optimierer"
         ></v-text-field>
-
-
+        
+        <v-radio-group v-model="optimierer"
+        @update:model-value="this.test=true, this.$refs.bChart.refresh(optimierer) "
+        ><v-radio
+          label="optimieren lassen"
+          value=true
+        ></v-radio></v-radio-group>
+        <!--
+        <v-checkbox
+          v-model="optimierer"
+          label="optimieren lassen"
+          @change="test=!test"
+        ></v-checkbox>
+        -->
+        
         
     </v-navigation-drawer>
     
@@ -56,8 +78,8 @@
          <v-row class="ma-5">
            <v-col>
                <h2>Clustering mittels Künstlicher Intelligenz</h2>
-               <v-card-text>Im Folgenden können Sie mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
-                Wählen Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl. Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
+               <v-card-text>Im Folgenden kann analysiert werden, wo sich Ortsteile gemäß gewissen Kategorien zu Gruppen ähnlicher Punkte ballen ("clustern").<p></p>
+               Nutzen Sie das eingebautes Machine-Learning-Feature, indem Sie Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl wählen.<p></p> Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
                 <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
@@ -71,19 +93,36 @@
          <v-row class="ma-5">
            <v-col>
              <v-card class="BDiagramm" rounded="0" >
-              <div class="bubble-chart-container">
+              <div class="bubble-chart-container" id="bubble">
              <BubbleChart
                    ref="bChart"
+                   :optimieren="this.test"
                    :anzahl="this.anzahl"
                    :orte="this.selectOrte"
                    :kategorie="this.selectKategorie"
                    @kategorie="handleKategorie" 
                    @orte="handleOrte" 
+                   @annotliste="handleAnnotliste"
                ></BubbleChart> 
               </div>
              </v-card>
            </v-col>
 
+         </v-row>
+
+         <v-row>
+          <v-col>
+            <div id="clusteranzeige">
+                  <template>
+                    <div>
+                      <template v-for="(item, index) in outputliste" >
+                        Text{{ index + 1 }}: {{ item }}
+                      </template>
+                    </div>
+                  </template>
+            </div>
+
+          </v-col>
          </v-row>
 
 
@@ -106,6 +145,12 @@ export default {
       selectKategorie: [],
       itemsKategorie: [],
       anzahl:"2",
+      vielDimensional: false,
+      annotListe: [],
+      selectAll: false,
+      optimierer: false,
+      test: false,
+      outputliste: [],
     }
   },
   methods:{
@@ -114,11 +159,82 @@ export default {
             },
     handleOrte(data){
                 this.itemsOrte=data
-            }
+            },
+    handleAnnotliste(data){
+                this.annotListe=data
+            },
+    toggleSelectAll() {
+      if (this.selectAll === true) {
+        this.selectOrte = []
+      } 
+      else {
+        this.selectOrte = this.itemsOrte
+      }
+    },
+    processLists(list1, list2) { //list1 ist annotliste , list2 ist SelectOrtsteile, Output ist Liste von Listen
+        /* Bsp.:
+        let list1 = [0, 0, 1, 2];
+        let list2 = ["A", "B", "C", "D"];
+        let listOutput = processLists(list1, list2);
+        console.log(listOutput);   ->  [["A", "B"], ["C"], ["D"]]
+           -> die stelle der liste sagt list1, was darein kommt sagt list2
+        */
+        let result = [];
+        
+        for (let i = 0; i < list1.length; i++) {
+          let value = list1[i];
+          let element = list2[i];
+          
+          if (!result[value]) {
+            result[value] = [];
+          }
+          
+          result[value].push(element);
+        }
+        
+        return result.filter(Boolean);
+    },
+
 
   },
   watch:{
-  
+    selectKategorie(val){
+      if (val.length>2){
+        this.vielDimensional = true
+      }
+      else{
+        this.vielDimensional = false
+      }
+    },
+    vielDimensional(val){
+      if (val===true){
+        document.getElementById("bubble").hidden = true
+        document.getElementById("clusteranzeige").hidden = false
+        this.outputliste = this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
+      }
+      else{
+        document.getElementById("bubble").hidden = false
+        document.getElementById("clusteranzeige").hidden = true
+      }
+    },
+    optimierer(val){
+      if (val === true){
+        let a = this.selectKategorie
+        this.selectKategorie = []
+        this.selectKategorie = a
+      }
+      else{
+        let w = this.selectKategorie
+        this.selectKategorie = []
+        this.selectKategorie = w
+      }
+    },
+    anzahl(){
+      this.outputliste = this.processLists(this.annotListe, this.selectOrte)
+    }
+
   },
  
 }

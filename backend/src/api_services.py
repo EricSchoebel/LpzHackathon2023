@@ -94,10 +94,10 @@ Further remarks (from https://scikit-learn.org/stable/modules/generated/sklearn.
 'n_init': Number of time the k-means algorithm will be run with different centroid seeds kmeans
 When n_init='auto', the number of runs depends on the value of init: 10 if using init='random', 1 if using init='k-means++'.
 """
-
 #testing
 #print(kmeansWithK(2, example, clean_df))
 #print(kmeansWithoutK(example, clean_df))
+
 
 #anomaly detection
 #detect outliers with LOF (Local Outlier Factor)
@@ -114,7 +114,6 @@ def detectOutliersLOF(included_cols, dataframe):
         return None
 
     else:
-
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)  # Scale the data
 
@@ -132,14 +131,6 @@ def detectOutliersLOF(included_cols, dataframe):
         #return label_adder(dataframe, labels)
         return labels
 
-
-
-def testing():
-    test_dict = {
-            'name': 'Herbert',
-            'coolness': 19
-            }
-    return test_dict
 
 
 

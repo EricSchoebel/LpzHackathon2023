@@ -51,10 +51,9 @@
            <v-row class="ma-5">
              <v-col>
                  <h2>Anomalieerkennung mittels Künstlicher Intelligenz</h2>
-                 <v-card-text>.... Im Folgenden können Sie über Anomalieerkennung Aureißer ....mehrere Ortsteile bezüglich von Ihnen gewählten Kategorien durch ein eingebautes Machine-Learning-Feature clustern lassen.                                                                                          
-                  Wählen Sie die Ortsteile, die Kategorien.                                                      
-                  <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. "Normale" Ortsteile sind grün gefärbt, Ausreißer sind rot markiert.
-                     Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
+                 <v-card-text>Im Folgenden können Ausreißer in den Daten mittels Machine Learning algorithmisch identifiziert werden.<p></p>
+                  Es können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl allerdings mindestens vier betragen. <p></p>Für den Fall von <strong>zwei Kategorien</strong> kann das Ergebnis graphisch veranschaulicht werden.
+                  <p></p>"Normale" Ortsteile sind grün gefärbt, Ausreißer sind rot markiert.</v-card-text>
              </v-col>
            </v-row>
           

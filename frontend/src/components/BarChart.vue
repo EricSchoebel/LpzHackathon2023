@@ -1,9 +1,12 @@
 <template>
     <Bar class="barchart"
          
-         :chartNumber="chartNumber"
-         :chart-options="chartOptions"
-         :chart-data="chartData"
+         :Number="chartNumber"
+         :options="chartOptions"
+
+
+         :data="chartData"
+
          :chart-id="chartId"
          :dataset-id-key="datasetIdKey"
          :plugins="plugins"
@@ -89,121 +92,150 @@
                 
                 //const colors = []
 
-                let altenquote = []
-                let elektroautos = []
-                let durchschnittlicheHaushaltsgroesse = []
-                let durchschnittsalter = []
-                let jugendquote = []
-                let kitaKinder = []
-                let lebenszufriedenheitZufriedenheitsfaktor = []
-                let persoenlichesEinkommen = []
-                let straftaten = []
-                let wirtschaftlicheLageZufriedenheitsfaktor = []
-                let wohnviertelZufriedenheitsfaktor = []
-                let zukunftsaussichtZufriedenheitsfaktor = []
+                let Altenquote = []
+                let DurchschnittlicheHaushaltsgröße = []
+                let Durchschnittsalter = []
+                let Elektroautos = []
+                let Jugendquote = []
+                let KitaKinder = []
+                let LebenszufriedenheitZufriedenheitsfaktor = []
+                let PersönlichesEinkommen = []
+                let Straftaten = []
+                let WirtschaftlicheLageZufriedenheitsfaktor = []
+                let WohnviertelZufriedenheitsfaktor = []
+                let ZukunftsaussichtZufriedenheitsfaktor = []
                 let ortsteil = [] //ist quasi rechnerName
+                let annot = []
 
                 let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
                 "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
                 "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
                 "ZukunftsaussichtZufriedenheitsfaktor"]
+        
+                let ortsteillist =['Althen-Kleinpösna', 'Altlindenau', 'Anger-Crottendorf', 'Baalsdorf',
+                            'Burghausen-Rückmarsdorf', 'Böhlitz-Ehrenberg', 'Connewitz', 'Dölitz-Dösen',
+                            'Engelsdorf', 'Eutritzsch', 'Gohlis-Mitte', 'Gohlis-Nord', 'Gohlis-Süd',
+                            'Großzschocher', 'Grünau-Mitte', 'Grünau-Nord', 'Grünau-Ost',
+                            'Grünau-Siedlung', 'Hartmannsdorf-Knautnaundorf', 'Heiterblick',
+                            'Holzhausen', 'Kleinzschocher', 'Knautkleeberg-Knauthain', 'Lausen-Grünau',
+                            'Leutzsch', 'Liebertwolkwitz', 'Lindenau', 'Lindenthal', 'Lößnig',
+                            'Lützschena-Stahmeln', 'Marienbrunn', 'Meusdorf', 'Miltitz', 'Mockau-Nord',
+                            'Mockau-Süd', 'Möckern', 'Mölkau', 'Neulindenau', 'Neustadt-Neuschönefeld',
+                            'Paunsdorf', 'Plagwitz', 'Plaußig-Portitz', 'Probstheida',
+                            'Reudnitz-Thonberg', 'Schleußig', 'Schönau', 'Schönefeld-Abtnaundorf',
+                            'Schönefeld-Ost', 'Seehausen', 'Sellerhausen-Stünz', 'Stötteritz',
+                            'Südvorstadt', 'Thekla', 'Volkmarsdorf', 'Wahren', 'Wiederitzsch', 'Zentrum',
+                            'Zentrum-Nord', 'Zentrum-Nordwest', 'Zentrum-Ost', 'Zentrum-Süd',
+                            'Zentrum-Südost', 'Zentrum-West']
 
+
+                //put API-Data into variables 
                 for(b in newData){
-
-                  altenquote.push(newData[b].Altenquote)
-                  durchschnittlicheHaushaltsgroesse.push(newData[b].DurchschnittlicheHaushaltsgröße)
-                  durchschnittsalter.push(newData[b].Durchschnittsalter)
-                  elektroautos.push(newData[b].Elektroautos)
-                  jugendquote.push(newData[b].Jugendquote)
-                  kitaKinder.push(newData[b].KitaKinder)
-                  lebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
-                  persoenlichesEinkommen.push(newData[b].persoenlichesEinkommen)
-                  straftaten.push(newData[b].straftaten)
-                  wirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].wirtschaftlicheLageZufriedenheitsfaktor)
-                  wohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
-                  zukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
+                  //console.log("nun")
+                  Altenquote.push(newData[b].Altenquote)
+                  DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
+                  Durchschnittsalter.push(newData[b].Durchschnittsalter)
+                  Elektroautos.push(newData[b].Elektroautos)
+                  Jugendquote.push(newData[b].Jugendquote)
+                  KitaKinder.push(newData[b].KitaKinder)
+                  LebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
+                  PersönlichesEinkommen.push(newData[b].PersönlichesEinkommen)
+                  Straftaten.push(newData[b].Straftaten)
+                  WirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].WirtschaftlicheLageZufriedenheitsfaktor)
+                  WohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
+                  ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
               
+                  annot.push(newData[b].label) //anotation
                   ortsteil.push(newData[b].Ortsteil)
-              }
+
+                  //war vorher innerhalb noch .toString()
+                }
+
+                console.log("Elektroautos:")
+                console.log(Elektroautos)
+                console.log("Jugendquote:")
+                console.log(Jugendquote)
+                console.log("KitaKinder:")
+                console.log(KitaKinder)
               
               this.chartData = {//setzt die Daten des Diagramms auf bestimmte Werte
                 labels: ortsteil, //das ist meine x-Achse
                 datasets: [ //das sind meine y-Achsen
                   { 
-                    label: "altenquote",
-                    data: altenquote,
+                    label: "Altenquote",
+                    data: Altenquote,
                     backgroundColor: '#9BD0F5',
                     hidden: false,
                   },
                   {
-                    label: "durchschnittlicheHaushaltsgroesse",
-                    data: durchschnittlicheHaushaltsgroesse,
+                    label: "DurchschnittlicheHaushaltsgröße",
+                    data: DurchschnittlicheHaushaltsgröße,
                     backgroundColor: '#ab1616',
                     hidden: false,
                   },
                   {
-                    label: "durchschnittsalter",
-                    data: durchschnittsalter,
+                    label: "Durchschnittsalter",
+                    data: Durchschnittsalter,
                     backgroundColor: '#F44336',
                     hidden: false,
                   },
                   {
-                    label: "elektroautos",
-                    data: elektroautos,
+                    label: "Elektroautos",
+                    data: Elektroautos,
                     backgroundColor: '#229924',
                     hidden: false,
                   },
                   {
-                    label: "jugendquote",
-                    data: jugendquote,
+                    label: "Jugendquote",
+                    data: Jugendquote,
                     backgroundColor: '#E91E63',
                     hidden: false,
                   },
                   {
-                    label: "kitaKinder",
-                    data: kitaKinder,
+                    label: "KitaKinder",
+                    data: KitaKinder,
                     backgroundColor: '#9C27B0',
                     hidden: false,
                   },
                   {
-                    label: "lebenszufriedenheitZufriedenheitsfaktor",
-                    data: lebenszufriedenheitZufriedenheitsfaktor,
+                    label: "LebenszufriedenheitZufriedenheitsfaktor",
+                    data: LebenszufriedenheitZufriedenheitsfaktor,
                     backgroundColor: '#8E24AA',
                     hidden: false,
                   },
                   {
-                    label: "persoenlichesEinkommen",
-                    data: persoenlichesEinkommen,
+                    label: "PersönlichesEinkommen",
+                    data: PersönlichesEinkommen,
                     backgroundColor: '#E65100',
                     hidden: false,
                   },
                   {
-                    label: "straftaten",
-                    data: straftaten,
+                    label: "Straftaten",
+                    data: Straftaten,
                     backgroundColor: '#880E4F',
                     hidden: false,
                   },
                   {
-                    label: "wirtschaftlicheLageZufriedenheitsfaktor",
-                    data: wirtschaftlicheLageZufriedenheitsfaktor,
+                    label: "WirtschaftlicheLageZufriedenheitsfaktor",
+                    data: WirtschaftlicheLageZufriedenheitsfaktor,
                     backgroundColor: '#9575CD',
                     hidden: false,
                   },
                   {
-                    label: "wohnviertelZufriedenheitsfaktor",
-                    data: wohnviertelZufriedenheitsfaktor,
+                    label: "WohnviertelZufriedenheitsfaktor",
+                    data: WohnviertelZufriedenheitsfaktor,
                     backgroundColor: '#03A9F4',
                     hidden: false,
                   },
                   {
-                    label: "zukunftsaussichtZufriedenheitsfaktor",
-                    data: zukunftsaussichtZufriedenheitsfaktor,
+                    label: "ZukunftsaussichtZufriedenheitsfaktor",
+                    data: ZukunftsaussichtZufriedenheitsfaktor,
                     backgroundColor: '#AED581',
                     hidden: false,
                   },
                 ]
               }
-              this.$emit("orte", ortsteil)
+              this.$emit("orte", ortsteillist)
               this.$emit("kategorie", kategorielist)
 
 
