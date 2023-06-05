@@ -58,13 +58,14 @@
         -->
         <v-checkbox
           v-model="optimierer"
-          class="my-n7"
+          class="my-n10 px-3"
           label="optimieren lassen"
           @change="test=!test"
         ></v-checkbox>
         
         <v-btn
          @click="submitter=!submitter"
+         class="my-5 px-16"
         >aktualisieren</v-btn>
         
         
@@ -121,7 +122,7 @@
           <v-col>
             <div id="clusteranzeige" hidden="true">
                       <div v-for="(list, index) in this.outputliste"  :key="index">
-                        <p>Text {{ index +1 }}: {{ list.join(', ') }}</p>
+                        <p>Cluster {{ index +1 }}: {{ list.join(', ') }}</p>
                       </div>
             </div>
 
