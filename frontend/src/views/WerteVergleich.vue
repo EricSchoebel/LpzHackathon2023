@@ -60,7 +60,7 @@
     import BarChart from "@/components/BarChart"
     
     export default{
-        components: {BarChart },
+        components: { BarChart },
         data () {
             return {
                drawer:true,
