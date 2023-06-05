@@ -1,19 +1,15 @@
 <template>
     <Bar class="barchart"
          
-         :Number="chartNumber"
-         :options="chartOptions"
-
-
-         :data="chartData"
-
-         :chart-id="chartId"
-         :dataset-id-key="datasetIdKey"
-         :plugins="plugins"
-         :css-classes="cssClasses"
-         :styles="styles"
-         :width="width"
-         :height="height"
+          :options="chartOptions"
+          :id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+          :data="chartData"
          
     />
   </template>
@@ -34,7 +30,10 @@
       kategorie:{
         type: Array,
       },
-      
+      anzahl: {
+        type: String,
+        default: "2",
+      },
       chartNumber:{
         type: Number,
         default: 1,
@@ -245,10 +244,9 @@
     data() {
       return {
         chartData:{
-          labels: [],
           datasets:[]
         },//setzt die Diagramme erstmal auf 0, diese werden danach durch mounted auf einen Wert gesetzt
-        chartOptions: {
+       // chartOptions: {
           /*
           responsive: true,
           maintainAspectRatio: false,
@@ -274,7 +272,7 @@
             }
           }
           */
-        },
+       // },
       }
     }
     },

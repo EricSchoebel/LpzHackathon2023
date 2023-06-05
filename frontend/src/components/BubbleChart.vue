@@ -181,9 +181,9 @@
         }
         else{
           //nur Text anzeigen
-          let ende = (this.kategorie).length
+          let ende = 1
           //let numberList = [];
-          for (let i = 1; i <= ende; i++) {
+          for (let i = 1; i < ende; i++) {
               
 
             console.log("hallo");
@@ -201,7 +201,7 @@
           let firstCateg = this.kategorie[0]
           let secondCateg = this.kategorie[1]
           //console.log("else, first:")
-          console.log(firstCateg+secondCateg+"EGAAAL")
+          console.log(firstCateg+secondCateg+"EGAL")
           //console.log("else, second:")
           //console.log(secondCateg)
 
