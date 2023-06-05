@@ -31,7 +31,12 @@
           label="Kategorien"
           multiple
           chips
+          
         ></v-combobox>
+        <!--funktioniert noch nicht: :rules="[
+                       v=> v>=2 || 'mindestens zwei Kategorien auswählen'
+                   ]"-->
+
 
         <v-card-title>Clusteranzahl</v-card-title>
         <v-text-field
@@ -66,8 +71,9 @@
         <v-btn
          @click="submitter=!submitter"
          class="my-5 px-16"
+         color="#90EE90"
         >aktualisieren</v-btn>
-        
+        <!--light orange: #FFDAB9-->
         
     </v-navigation-drawer>
     
