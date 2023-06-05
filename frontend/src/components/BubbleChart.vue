@@ -37,7 +37,9 @@
       kategorie:{
         type: Array,
       },
-
+      submitter:{
+        type: Boolean,
+      },
       datasetIdKey: {
         type: String,
         default: 'label'
@@ -344,6 +346,12 @@
         this.loadData()
       },
       kategorie:function(){
+        this.loadData()
+      },
+      optimieren:function(){
+        this.loadData()
+      },
+      submitter:function(){
         this.loadData()
       },
     },

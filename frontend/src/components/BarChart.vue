@@ -24,12 +24,15 @@
     name: 'BarChart',
     components: { Bar },
     props: {
-      orte:{ 
+      /*orte:{ 
         type: Array,
+        default: ["Anger-Crottendorf"],
       },
       kategorie:{
         type: Array,
+        default: ["Anger-Crottendorf"],
       },
+      */
       anzahl: {
         type: String,
         default: "2",
@@ -246,8 +249,8 @@
         chartData:{
           datasets:[]
         },//setzt die Diagramme erstmal auf 0, diese werden danach durch mounted auf einen Wert gesetzt
-       // chartOptions: {
-          /*
+        chartOptions: {
+          
           responsive: true,
           maintainAspectRatio: false,
           onClick: this.ClickHandeler,
@@ -271,8 +274,8 @@
               }
             }
           }
-          */
-       // },
+          
+        },
       }
     }
     },

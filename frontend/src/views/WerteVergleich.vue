@@ -39,8 +39,7 @@
             <BarChart
                     ref="barChart"
                    :anzahl="this.anzahl"
-                   :orte="this.selectOrte"
-                   :kategorie="this.selectKategorie"
+                   
                    @kategorie="handleKategorie" 
                    @orte="handleOrte" 
             >
@@ -50,7 +49,8 @@
      
 
     </main>
-
+              <!--:orte="this.selectOrte"
+                   :kategorie="this.selectKategorie"-->
     
     </div>
 
