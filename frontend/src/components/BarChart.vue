@@ -94,7 +94,8 @@
       },
       updateDiagramm(newData){
                 let b;
-                
+
+                console.log("test")
                 //const colors = []
 
                 let Altenquote = []
