@@ -24,15 +24,18 @@
     name: 'BarChart',
     components: { Bar },
     props: {
-      /*orte:{ 
+      orte:{ 
         type: Array,
-        default: ["Anger-Crottendorf"],
+        default: function () {
+        return ["Anger-Crottendorf"];
+      },
       },
       kategorie:{
         type: Array,
-        default: ["Anger-Crottendorf"],
+        default: function () {
+        return ["Anger-Crottendorf"];
       },
-      */
+      },
       anzahl: {
         type: String,
         default: "2",
