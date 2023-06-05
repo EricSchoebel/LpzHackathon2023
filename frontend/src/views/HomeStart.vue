@@ -4,7 +4,7 @@
            <v-col>
                <h2>Willkommen zu MIRA!</h2>
                <div class="spacer"></div>
-               <h3>Lassen Sie sich von der Macht des maschinellen Lernens begeistern und nutzen Sie dieses KI-Analysetool, um Leipzig aus einem neuen Blickwinkel zu sehen. 
+               <h3>Lassen Sie sich von der Macht des maschinellen Lernens begeistern und nutzen Sie dieses KI-Analysetool, um Leipzig aus einem neuen Blickwinkel zu entdecken. 
                 Vergleichen Sie die 63 Ortsteile der Stadt hinsichtlich 12 Kategorien mit realen Daten für das Jahr 2021 und entdecken Sie spannende Zusammenhänge auf einfache Art!</h3>
            </v-col>
          </v-row>

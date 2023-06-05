@@ -77,12 +77,15 @@ def determineOptimalK(included_cols, dataframe):
     col_names = dataframe.columns.tolist()  # get column names from DataFrame
     selected_cols = [col_names[i] for i, include in enumerate(included_cols) if include]  # select relevant columns based on included_cols list
     X = dataframe[selected_cols].to_numpy()
+    upper_bound = 11
+    if (dataframe.shape[0] <= upper_bound):
+        upper_bound = dataframe.shape[0] # dataframe.shape[0] = rows = amount Ortsteile
 
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)  # Scale the data
 
     silhouette_scores = []
-    for i in range(2, 11): # 2 included, 11 excluded
+    for i in range(2, upper_bound): # 2 included, 11 excluded
         kmeans = KMeans(n_clusters=i, n_init='auto', random_state=0).fit(X_scaled)
         score = silhouette_score(X_scaled, kmeans.labels_)
         silhouette_scores.append(score)

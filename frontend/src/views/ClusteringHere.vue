@@ -45,21 +45,27 @@
                    class="px-5 pb-3"
                    type="number"
                    :disabled="optimierer"
+                   @update:model-value="submitter=!submitter"
         ></v-text-field>
         
+         <!--
         <v-radio-group v-model="optimierer"
         @update:model-value="this.test=true, this.$refs.bChart.refresh(optimierer) "
         ><v-radio
           label="optimieren lassen"
           value=true
         ></v-radio></v-radio-group>
-        <!--
+        -->
         <v-checkbox
           v-model="optimierer"
+          class="my-n7"
           label="optimieren lassen"
           @change="test=!test"
         ></v-checkbox>
-        -->
+        
+        <v-btn
+         @click="submitter=!submitter"
+        >aktualisieren</v-btn>
         
         
     </v-navigation-drawer>
@@ -96,6 +102,7 @@
               <div class="bubble-chart-container" id="bubble">
              <BubbleChart
                    ref="bChart"
+                   :submitter="this.submitter"
                    :optimieren="this.test"
                    :anzahl="this.anzahl"
                    :orte="this.selectOrte"
@@ -112,14 +119,10 @@
 
          <v-row>
           <v-col>
-            <div id="clusteranzeige">
-                  <template>
-                    <div>
-                      <template v-for="(item, index) in outputliste" >
-                        Text{{ index + 1 }}: {{ item }}
-                      </template>
-                    </div>
-                  </template>
+            <div id="clusteranzeige" hidden="true">
+                      <div v-for="(list, index) in this.outputliste"  :key="index">
+                        <p>Text {{ index +1 }}: {{ list.join(', ') }}</p>
+                      </div>
             </div>
 
           </v-col>
@@ -150,7 +153,8 @@ export default {
       selectAll: false,
       optimierer: false,
       test: false,
-      outputliste: [],
+      outputliste: [["test","test2"],["paul","leo"]],
+      submitter: false,
     }
   },
   methods:{
@@ -171,7 +175,7 @@ export default {
         this.selectOrte = this.itemsOrte
       }
     },
-    processLists(list1, list2) { //list1 ist annotliste , list2 ist SelectOrtsteile, Output ist Liste von Listen
+    async processLists(list1, list2) { //list1 ist annotliste , list2 ist SelectOrtsteile, Output ist Liste von Listen
         /* Bsp.:
         let list1 = [0, 0, 1, 2];
         let list2 = ["A", "B", "C", "D"];
@@ -192,7 +196,7 @@ export default {
           result[value].push(element);
         }
         
-        return result.filter(Boolean);
+        this.outputliste=result.filter(Boolean);
     },
 
 
@@ -201,22 +205,31 @@ export default {
     selectKategorie(val){
       if (val.length>2){
         this.vielDimensional = true
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
       }
       else{
         this.vielDimensional = false
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
       }
     },
     vielDimensional(val){
       if (val===true){
         document.getElementById("bubble").hidden = true
         document.getElementById("clusteranzeige").hidden = false
-        this.outputliste = this.processLists(this.annotListe, this.selectOrte)
+        this.processLists(this.annotListe, this.selectOrte)
         console.log("unser list von lits outputliste")
         console.log(this.outputliste)
       }
       else{
         document.getElementById("bubble").hidden = false
         document.getElementById("clusteranzeige").hidden = true
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
       }
     },
     optimierer(val){
@@ -231,8 +244,20 @@ export default {
         this.selectKategorie = w
       }
     },
-    anzahl(){
-      this.outputliste = this.processLists(this.annotListe, this.selectOrte)
+    async anzahl(){
+      await(this.processLists(this.annotListe, this.selectOrte))
+      console.log("unser list von lits outputliste")
+      console.log(this.outputliste)
+    },
+    selectOrte(){
+      this.processLists(this.annotListe, this.selectOrte)
+      console.log("unser list von lits outputliste")
+      console.log(this.outputliste)
+    },
+    submitter(){
+      this.processLists(this.annotListe, this.selectOrte)
+      console.log("unser list von lits outputliste")
+      console.log(this.outputliste)
     }
 
   },

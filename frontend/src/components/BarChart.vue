@@ -1,19 +1,15 @@
 <template>
     <Bar class="barchart"
          
-         :Number="chartNumber"
-         :options="chartOptions"
-
-
-         :data="chartData"
-
-         :chart-id="chartId"
-         :dataset-id-key="datasetIdKey"
-         :plugins="plugins"
-         :css-classes="cssClasses"
-         :styles="styles"
-         :width="width"
-         :height="height"
+          :options="chartOptions"
+          :id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+          :data="chartData"
          
     />
   </template>
@@ -28,13 +24,19 @@
     name: 'BarChart',
     components: { Bar },
     props: {
-      orte:{ 
+      /*orte:{ 
         type: Array,
+        default: ["Anger-Crottendorf"],
       },
       kategorie:{
         type: Array,
+        default: ["Anger-Crottendorf"],
       },
-      
+      */
+      anzahl: {
+        type: String,
+        default: "2",
+      },
       chartNumber:{
         type: Number,
         default: 1,
@@ -245,11 +247,10 @@
     data() {
       return {
         chartData:{
-          labels: [],
           datasets:[]
         },//setzt die Diagramme erstmal auf 0, diese werden danach durch mounted auf einen Wert gesetzt
         chartOptions: {
-          /*
+          
           responsive: true,
           maintainAspectRatio: false,
           onClick: this.ClickHandeler,
@@ -273,7 +274,7 @@
               }
             }
           }
-          */
+          
         },
       }
     }

@@ -1,8 +1,8 @@
 <template>
     <Bubble class="bubblechart"
           
-          :chart-options="chartOptions"
-          :chart-id="chartId"
+          :options="chartOptions"
+          :id="chartId"
           :dataset-id-key="datasetIdKey"
           :plugins="plugins"
           :css-classes="cssClasses"
@@ -335,10 +335,10 @@
           maintainAspectRatio: true,
           plugins:{
             legend: {
-              display: true,
+              display: false,
             },
             title:{
-              display: true,
+              display: false,
             },
           },
           scales: {
@@ -346,7 +346,7 @@
               display: true,
               title: {
                 display: true,
-                text:'durchschnittlicheHaushaltsgroesse'
+                text:'Erst ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             },
@@ -354,7 +354,7 @@
               display: true,
               title: {
                 display: true,
-                text: 'altenquote'
+                text: 'Zweit ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             }

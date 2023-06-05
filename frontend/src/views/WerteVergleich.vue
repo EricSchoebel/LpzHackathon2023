@@ -6,13 +6,22 @@
       v-model="drawer"
       >   
 
+      <v-card-title>Ortsteile auswählen:</v-card-title>
         <v-combobox
           v-model="selectOrte"
           :items="itemsOrte"
           label="Ortsteile"
           multiple
           chips
-        ></v-combobox>
+          >
+                  <template v-slot:prepend-item>
+                  <v-checkbox
+                    v-model="selectAll"
+                    label="alle auswählen"
+                    @click ="toggleSelectAll"
+                  ></v-checkbox>
+                  </template>
+        </v-combobox>
 
         <v-combobox
           v-model="selectKategorie"
@@ -30,8 +39,7 @@
             <BarChart
                     ref="barChart"
                    :anzahl="this.anzahl"
-                   :orte="this.selectOrte"
-                   :kategorie="this.selectKategorie"
+                   
                    @kategorie="handleKategorie" 
                    @orte="handleOrte" 
             >
@@ -41,7 +49,8 @@
      
 
     </main>
-
+              <!--:orte="this.selectOrte"
+                   :kategorie="this.selectKategorie"-->
     
     </div>
 
@@ -59,15 +68,16 @@
                itemsOrte: ["hi"],
                selectKategorie: [],
                itemsKategorie: [],
+               anzahl:"2",
             }
         },
         methods:{
-            kategorie(data){
+          handleKategorie(data){
                 this.itemsKategorie=data
             },
-            orte(data){
+          handleOrte(data){
                 this.itemsOrte=data
-            }
+            },
 
         }
         
