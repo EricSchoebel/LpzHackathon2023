@@ -17,8 +17,14 @@
             :rules="[
                        v=> selectOrte.length >3 || 'mindestens 4 Ortsteile auswählen'
                    ]"
-           
-          ></v-combobox>
+           ><template v-slot:prepend-item>
+                  <v-checkbox
+                    v-model="selectAll"
+                    label="alle auswählen"
+                    @click ="toggleSelectAll"
+                  ></v-checkbox>
+                  </template>
+          </v-combobox>
   
           <v-card-title>Kategorien auswählen:</v-card-title>
           <v-combobox
@@ -109,7 +115,15 @@
               },
       handleOrte(data){
                   this.itemsOrte=data
-              }
+              },
+      toggleSelectAll() {
+      if (this.selectAll === true) {
+        this.selectOrte = []
+      } 
+      else {
+        this.selectOrte = this.itemsOrte
+      }
+              },
   
     },
     watch:{

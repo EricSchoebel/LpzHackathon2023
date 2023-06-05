@@ -114,9 +114,9 @@
           <v-col>
             <div id="clusteranzeige">
                   <template>
-                    <div>
-                      <template v-for="(item, index) in outputliste" >
-                        Text{{ index + 1 }}: {{ item }}
+                    <div v-if="this.outputliste!=[]">
+                      <template v-for="(list, index) in this.outputliste"  :key="index">
+                        <p>Text {{ index +1}}: {{ list.join(', ') }}</p>
                       </template>
                     </div>
                   </template>
@@ -201,9 +201,11 @@ export default {
     selectKategorie(val){
       if (val.length>2){
         this.vielDimensional = true
+        this.outputliste = this.processLists(this.annotListe, this.selectOrte)
       }
       else{
         this.vielDimensional = false
+        this.outputliste = this.processLists(this.annotListe, this.selectOrte)
       }
     },
     vielDimensional(val){
@@ -217,6 +219,7 @@ export default {
       else{
         document.getElementById("bubble").hidden = false
         document.getElementById("clusteranzeige").hidden = true
+        this.outputliste = this.processLists(this.annotListe, this.selectOrte)
       }
     },
     optimierer(val){
@@ -233,7 +236,10 @@ export default {
     },
     anzahl(){
       this.outputliste = this.processLists(this.annotListe, this.selectOrte)
-    }
+    },
+    selectOrte(){
+      this.outputliste = this.processLists(this.annotListe, this.selectOrte)
+    },
 
   },
  
