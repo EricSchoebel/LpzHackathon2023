@@ -1,4 +1,3 @@
-<!-- MUSTER -->
 
 <template>
     <div>
