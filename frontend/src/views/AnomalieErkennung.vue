@@ -36,7 +36,7 @@
             chips
             @update:model-value="submittertwo=!submittertwo"
             :rules="[
-                       v=> selectKategorie.length >0 || 'mindestens eine Kategorie auswählen'
+                       v=> selectKategorie.length >1 || 'mindestens zwei Kategorien auswählen'
                    ]"
           ></v-combobox>
 

@@ -31,6 +31,9 @@
           label="Kategorien"
           multiple
           chips
+          :rules="[
+                       v=> selectKategorie.length >1 || 'mindestens zwei Kategorien auswählen'
+                   ]"
           
         ></v-combobox>
         <!--funktioniert noch nicht: :rules="[
