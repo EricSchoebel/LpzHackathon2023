@@ -61,7 +61,10 @@
       plugins: {
         type: Object,
         default: () => {}
-      }
+      },
+      submittertwo:{
+        type: Boolean,
+      },
     },
     methods:{
       //aktualisiert das Diagramm
@@ -229,7 +232,7 @@
       
        this.$emit("orte", ortsteillist)
        this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
-
+       this.$emit("annotliste", annot)
 
 
       },
@@ -318,6 +321,9 @@
         this.loadData()
       },
       kategorie:function(){
+        this.loadData()
+      },
+      submittertwo:function(){
         this.loadData()
       },
     },

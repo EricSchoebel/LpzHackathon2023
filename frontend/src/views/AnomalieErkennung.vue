@@ -14,6 +14,7 @@
             label="Ortsteile"
             multiple
             chips
+            @update:model-value="submittertwo=!submittertwo"
             :rules="[
                        v=> selectOrte.length >3 || 'mindestens 4 Ortsteile auswählen'
                    ]"
@@ -33,10 +34,18 @@
             label="Kategorien"
             multiple
             chips
+            @update:model-value="submittertwo=!submittertwo"
             :rules="[
                        v=> selectKategorie.length >0 || 'mindestens eine Kategorie auswählen'
                    ]"
           ></v-combobox>
+
+          <v-btn
+          @click="submittertwo=!submittertwo"
+          class="my-5 px-16"
+          color="#90EE90"
+          >aktualisieren</v-btn>
+        <!--light orange: #FFDAB9-->
   
             
   
@@ -57,7 +66,7 @@
            <v-row class="ma-5">
              <v-col>
                  <h2>Anomalieerkennung mittels Künstlicher Intelligenz</h2>
-                 <v-card-text>Im Folgenden können Ausreißer in den Daten mittels Machine Learning algorithmisch identifiziert werden.<p></p>
+                 <v-card-text>Im Folgenden können gegebenenfalls auftretende Ausreißer in den Daten mittels Machine Learning algorithmisch identifiziert werden.<p></p>
                   Es können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl allerdings mindestens vier betragen. <p></p>Für den Fall von <strong>zwei Kategorien</strong> kann das Ergebnis graphisch veranschaulicht werden.
                   <p></p>"Normale" Ortsteile sind grün gefärbt, Ausreißer sind rot markiert.</v-card-text>
              </v-col>
@@ -72,20 +81,42 @@
            <v-row class="ma-5">
              <v-col>
                <v-card class="BDiagramm" rounded="0" >
-                <div class="bubble-chart-container">
+                <div class="bubble-chart-container" id="bubble">
                <AnomalieChart
                      ref="bChart"
+                     :submittertwo="this.submittertwo"
                      :anzahl="this.anzahl"
                      :orte="this.selectOrte"
                      :kategorie="this.selectKategorie"
                      @kategorie="handleKategorie" 
-                     @orte="handleOrte" 
+                     @orte="handleOrte"
+                     @annotliste="handleAnnotliste" 
                  ></AnomalieChart> 
                 </div>
                </v-card>
              </v-col>
   
            </v-row>
+
+
+           <v-row>
+          <v-col>
+            <div id="gruppierungsanzeige" hidden="true">
+                      <div v-for="(list, index) in this.outputliste"  :key="index">
+                        <div v-if="index === 0">
+                            <p style="font-weight: bold; font-size: 1.2em; margin-left: 10px; margin-right: 10px; ">Ortsteile im Normalbereich:</p>
+                            <p style="margin-left: 10px; margin-right: 10px;">{{ list.join(', ') }}</p>
+                            <br>
+                        </div>
+                        <div v-if="index === 1">
+                            <p style="font-weight: bold; font-size: 1.2em; margin-left: 10px; margin-right: 10px;">Ausreißer:</p>
+                            <p style="margin-left: 10px; margin-right: 10px;">{{ list.join(', ') }}</p>
+                        </div>
+                      </div>
+            </div>
+
+          </v-col>
+         </v-row>
   
   
       </v-card>
@@ -107,6 +138,10 @@
         selectKategorie: [],
         itemsKategorie: [],
         anzahl:"3",
+        vielDimensional: false,
+        annotListe: [],
+        submittertwo: false,
+        outputliste: [["test","test2"],["paul","leo"]],
       }
     },
     methods:{
@@ -116,6 +151,9 @@
       handleOrte(data){
                   this.itemsOrte=data
               },
+      handleAnnotliste(data){
+                this.annotListe=data
+            },
       toggleSelectAll() {
       if (this.selectAll === true) {
         this.selectOrte = []
@@ -124,9 +162,73 @@
         this.selectOrte = this.itemsOrte
       }
               },
+      async processLists(list1, list2) { //list1 ist annotliste , list2 ist SelectOrtsteile, Output ist Liste von Listen
+        /* Bsp.:
+        let list1 = [0, 0, 1, 2];
+        let list2 = ["A", "B", "C", "D"];
+        let listOutput = processLists(list1, list2);
+        console.log(listOutput);   ->  [["A", "B"], ["C"], ["D"]]
+           -> die stelle der liste sagt list1, was darein kommt sagt list2
+        */
+        let result = [];
+        
+        for (let i = 0; i < list1.length; i++) {
+          let value = list1[i];
+          let element = list2[i];
+          
+          if (!result[value]) {
+            result[value] = [];
+          }
+          
+          result[value].push(element);
+        }
+        
+        this.outputliste=result.filter(Boolean);
+    },
+    
   
     },
     watch:{
+      selectKategorie(val){
+      if (val.length>2){
+        this.vielDimensional = true
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
+      }
+      else{
+        this.vielDimensional = false
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
+      }
+    },
+    vielDimensional(val){
+      if (val===true){
+        document.getElementById("bubble").hidden = true
+        document.getElementById("gruppierungsanzeige").hidden = false
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
+      }
+      else{
+        document.getElementById("bubble").hidden = false
+        document.getElementById("gruppierungsanzeige").hidden = true
+        this.processLists(this.annotListe, this.selectOrte)
+        console.log("unser list von lits outputliste")
+        console.log(this.outputliste)
+      }
+    },
+    selectOrte(){
+      this.processLists(this.annotListe, this.selectOrte)
+      console.log("unser list von lits outputliste")
+      console.log(this.outputliste)
+    },
+    submittertwo(){
+      this.processLists(this.annotListe, this.selectOrte)
+      console.log("unser list von lits outputliste")
+      console.log(this.outputliste)
+    },
     
     },
    

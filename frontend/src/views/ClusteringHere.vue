@@ -43,7 +43,7 @@
                    v-model="anzahl"
                    :rules="[
                        //v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
-                       v=> v>0 || 'Clusteranzahl muss größer 0 sein'
+                       v=> v>0 || 'Anzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"
                    variant="outlined"
@@ -63,7 +63,7 @@
         -->
         <v-checkbox
           v-model="optimierer"
-          class="my-n10 px-3"
+          class="my-n8 px-3"
           label="optimieren lassen"
           @change="test=!test"
         ></v-checkbox>
@@ -128,7 +128,9 @@
           <v-col>
             <div id="clusteranzeige" hidden="true">
                       <div v-for="(list, index) in this.outputliste"  :key="index">
-                        <p>Cluster {{ index +1 }}: {{ list.join(', ') }}</p>
+                        <p style="font-weight: bold; font-size: 1.2em; margin-left: 10px; margin-right: 10px;">Cluster {{ index +1 }}:</p> 
+                        <p style="margin-left: 10px; margin-right: 10px;">{{ list.join(', ') }}</p>
+                        <br>
                       </div>
             </div>
 
