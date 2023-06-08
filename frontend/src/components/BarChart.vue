@@ -31,10 +31,6 @@ export default {
       type: Array,
       default: null,
     },
-    anzahl: {
-      type: String,
-      default: "2",
-    },
     chartNumber:{
       type: Number,
       default: 1,
@@ -73,43 +69,44 @@ export default {
   methods:{
     async loadData(){
 
-      try {  
-            console.log("Komme 1")
-            /* Idee signifikant anders als bei CLustering und Anomalieerkennung:
-            Es gibt einen allgemeinen API-Call und im Frontend wird dann bloß ausgewählt was genutzt wird.
-            Bei Clustering wird mit Auswahl von Ortsteilen, Kategorien o. ä. der API-Call beeinflusst */   
-            this.chartData =await (await fetch("http://127.0.0.1:5000/get/allData")).json();       
-            console.log(this.chartData)
-            console.log("Komme ich hier her?")
-            this.updateDiagramm(this.chartData)
-            console.log("ortsteile asugewählt:")
-            console.log(this.orte)  // dat kommt erstmal an
-            console.log("kategorien asugewählt:")
-            console.log(this.kategorie)
+      try { 
+        
+            const desired_ortsteile = this.orte
+            const ortsteillist_standard =['Althen-Kleinpösna', 'Altlindenau', 'Anger-Crottendorf', 'Baalsdorf',
+                            'Burghausen-Rückmarsdorf', 'Böhlitz-Ehrenberg', 'Connewitz', 'Dölitz-Dösen',
+                            'Engelsdorf', 'Eutritzsch', 'Gohlis-Mitte', 'Gohlis-Nord', 'Gohlis-Süd',
+                            'Großzschocher', 'Grünau-Mitte', 'Grünau-Nord', 'Grünau-Ost',
+                            'Grünau-Siedlung', 'Hartmannsdorf-Knautnaundorf', 'Heiterblick',
+                            'Holzhausen', 'Kleinzschocher', 'Knautkleeberg-Knauthain', 'Lausen-Grünau',
+                            'Leutzsch', 'Liebertwolkwitz', 'Lindenau', 'Lindenthal', 'Lößnig',
+                            'Lützschena-Stahmeln', 'Marienbrunn', 'Meusdorf', 'Miltitz', 'Mockau-Nord',
+                            'Mockau-Süd', 'Möckern', 'Mölkau', 'Neulindenau', 'Neustadt-Neuschönefeld',
+                            'Paunsdorf', 'Plagwitz', 'Plaußig-Portitz', 'Probstheida',
+                            'Reudnitz-Thonberg', 'Schleußig', 'Schönau', 'Schönefeld-Abtnaundorf',
+                            'Schönefeld-Ost', 'Seehausen', 'Sellerhausen-Stünz', 'Stötteritz',
+                            'Südvorstadt', 'Thekla', 'Volkmarsdorf', 'Wahren', 'Wiederitzsch', 'Zentrum',
+                            'Zentrum-Nord', 'Zentrum-Nordwest', 'Zentrum-Ost', 'Zentrum-Süd',
+                            'Zentrum-Südost', 'Zentrum-West']
+          
+            const ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
+            let ortsteileBinaryString = ortsteileBinaryList.join('');
 
+            /* Idee: Hier wird API-Call nur durch Auswahl von Ortsteilen beeinflusst.
+             Bei Clustering wird mit Auswahl von Ortsteilen, Kategorien o. ä. der API-Call beeinflusst.
+              */   
+            this.chartData =await (await fetch(
+              "http://127.0.0.1:5000/get/specificOrtsteileData?"
+              +"ortsteile_string="+ortsteileBinaryString)).json();       
+            this.updateDiagramm(this.chartData)
 
           } catch (e) {
             console.error(e)
           }
 
-      /*
-      let a =[1,2,3,4,5,6,7,8,9,10]
-      let b =[1,2,3,4,5,6,7,8,9,10]
-      this.chartData={
-        labels: a,
-        datasets:[{
-          label: 'test',
-          data: b
-        }]
-      }
-      */
 
     },
     updateDiagramm(newData){
               let b;
-
-              console.log("test")
-              //const colors = []
 
               let Altenquote = []
               let DurchschnittlicheHaushaltsgröße = []
@@ -149,7 +146,6 @@ export default {
 
               //put API-Data into variables 
               for(b in newData){
-                //console.log("nun")
                 Altenquote.push(newData[b].Altenquote)
                 DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
                 Durchschnittsalter.push(newData[b].Durchschnittsalter)
@@ -162,41 +158,13 @@ export default {
                 WirtschaftlicheLageZufriedenheitsfaktor.push(newData[b].WirtschaftlicheLageZufriedenheitsfaktor)
                 WohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
                 ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
-            
-                //annot.push(newData[b].label) //anotation
+
                 ortsteil.push(newData[b].Ortsteil)
 
-                //war vorher innerhalb noch .toString()
               }
-
-              /*hilft binarylist (mit 1 wenn Ortsteil selected) ? */
-              const desired_ortsteile = this.orte
-              const ortsteillist_standard = ortsteillist
-              const ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
-              console.log("ortsteileBinaryList:")
-              console.log(ortsteileBinaryList)
-
-              //FALSCH const filteredOrtsteil = ortsteil.filter((_, index) => ortsteileBinaryList[index] === 1);
-              //const filteredOrtsteil = ortsteil.map((el, index) => (ortsteileBinaryList[index] === 1 ? el : null));
-              //FIXME HIER WIRD NOCH DAS FALSCH ANGEZEIGT!
-
-              console.log(typeof(ortsteil))
-              /*Ortsteil einkürzen auf das was angezeigt werden soll */
-
-
-
-
-              console.log("Elektroautos:")
-              console.log(Elektroautos)
-              console.log("Jugendquote:")
-              console.log(Jugendquote)
-              console.log("KinderInTagesbetreuung:")
-              console.log(KinderInTagesbetreuung)
-
-
             
             this.chartData = {//setzt die Daten des Diagramms auf bestimmte Werte
-              labels: filteredOrtsteil, //das ist meine x-Achse
+              labels: ortsteil, //das ist meine x-Achse
               datasets: [ //das sind meine y-Achsen
                 { 
                   label: "Altenquote",
@@ -273,10 +241,8 @@ export default {
               ]
             }
 
-            /* HIER HIN FOR ANGEHAKTE KATEGORIE LABEL ANZEIGEN ODER NICHT */
             //setzt das dataset.hidden auf den gegenteiligen Wahrheitswert des Vorkommens in this.kategorie-Prop
             this.chartData.datasets.forEach((dataset) => {dataset.hidden = !this.kategorie.includes(dataset.label);}); 
-
 
             this.$emit("orte", ortsteillist)
             this.$emit("kategorie", kategorielist)
@@ -298,7 +264,6 @@ export default {
   data() {
     return {
       chartData: {
-        //labels: [ 'January', 'February', 'March'],
         datasets: []
       },
       chartOptions: {
@@ -308,11 +273,6 @@ export default {
           },
         },
       },
-
-   
-
-
-
     }
   },
   //lädt die Funktion für die Daten beim ersten Aufruf (des Reiters)
