@@ -8,6 +8,13 @@ api_controller = Blueprint(__name__, "api_controller") #initialize blueprint
 def get_all_data():
     return jsonify(dataframe_to_dict(clean_df))
 
+@api_controller.route("/get/specificOrtsteileData")
+def get_specific_ortsteile_data():
+    ortsteile_string = request.args.get("ortsteile_string")
+    included_ortsteile = string_decoder(ortsteile_string)  # tells us which rows (from 0 to 62)
+    relevant_ortsteile_dataframe = create_partial_rows_dataframe(clean_df, included_ortsteile)
+    return jsonify(dataframe_to_dict(relevant_ortsteile_dataframe))
+    # http://127.0.0.1:5000/get/specificOrteileData?ortsteile_string=....
 
 
 #---for Clustering

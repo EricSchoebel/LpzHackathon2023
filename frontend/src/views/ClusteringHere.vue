@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <v-navigation-drawer
@@ -55,14 +54,6 @@
                    @update:model-value="submitter=!submitter"
         ></v-text-field>
         
-         <!--
-        <v-radio-group v-model="optimierer"
-        @update:model-value="this.test=true, this.$refs.bChart.refresh(optimierer) "
-        ><v-radio
-          label="optimieren lassen"
-          value=true
-        ></v-radio></v-radio-group>
-        -->
         <v-checkbox
           v-model="optimierer"
           class="my-n8 px-3"
@@ -80,22 +71,18 @@
     </v-navigation-drawer>
     
 
+
     <main>
-    
-    
-    
     <v-card rounded="0">
       
         <v-divider></v-divider>
 
-        
-      <!-- BubbleChart Diagramm -->
          <v-row class="ma-5">
            <v-col>
                <h2>Clustering mittels Künstlicher Intelligenz</h2>
                <v-card-text>Im Folgenden kann analysiert werden, wo sich Ortsteile gemäß gewissen Kategorien zu Gruppen ähnlicher Punkte ballen ("clustern").<p></p>
                Nutzen Sie das eingebautes Machine-Learning-Feature, indem Sie Sie die Ortsteile, die Kategorien und ggf. die Clusteranzahl wählen.<p></p> Letztere können Sie alternativ auch vom Tool optimieren lassen.                                                      
-                <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
+                <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Dabei können Sie über die Punkte fahren, um genauere Informationen zu erhalten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
         
@@ -107,7 +94,7 @@
 
          <v-row class="ma-5">
            <v-col>
-             <v-card class="BDiagramm" rounded="0" >
+        
               <div class="bubble-chart-container" id="bubble">
              <BubbleChart
                    ref="bChart"
@@ -121,7 +108,7 @@
                    @annotliste="handleAnnotliste"
                ></BubbleChart> 
               </div>
-             </v-card>
+      
            </v-col>
 
          </v-row>

@@ -103,7 +103,7 @@ export default {
               let Durchschnittsalter = []
               let Elektroautos = []
               let Jugendquote = []
-              let KitaKinder = []
+              let KinderInTagesbetreuung = []
               let LebenszufriedenheitZufriedenheitsfaktor = []
               let PersönlichesEinkommen = []
               let Straftaten = []
@@ -114,7 +114,7 @@ export default {
               let annot = []
 
               let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
-              "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+              "Jugendquote","KinderInTagesbetreuung", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
               "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
               "ZukunftsaussichtZufriedenheitsfaktor"]
       
@@ -143,7 +143,7 @@ export default {
                 Durchschnittsalter.push(newData[b].Durchschnittsalter)
                 Elektroautos.push(newData[b].Elektroautos)
                 Jugendquote.push(newData[b].Jugendquote)
-                KitaKinder.push(newData[b].KitaKinder)
+                KinderInTagesbetreuung.push(newData[b].KinderInTagesbetreuung)
                 LebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
                 PersönlichesEinkommen.push(newData[b].PersönlichesEinkommen)
                 Straftaten.push(newData[b].Straftaten)
@@ -161,8 +161,8 @@ export default {
               console.log(Elektroautos)
               console.log("Jugendquote:")
               console.log(Jugendquote)
-              console.log("KitaKinder:")
-              console.log(KitaKinder)
+              console.log("KinderInTagesbetreuung:")
+              console.log(KinderInTagesbetreuung)
             
             this.chartData = {//setzt die Daten des Diagramms auf bestimmte Werte
               labels: ortsteil, //das ist meine x-Achse
@@ -198,8 +198,8 @@ export default {
                   hidden: false,
                 },
                 {
-                  label: "KitaKinder",
-                  data: KitaKinder,
+                  label: "KinderInTagesbetreuung",
+                  data: KinderInTagesbetreuung,
                   backgroundColor: '#9C27B0',
                   hidden: false,
                 },

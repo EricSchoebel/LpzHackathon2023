@@ -23,6 +23,7 @@
                   </template>
         </v-combobox>
 
+        <v-card-title>Kategorien auswählen:</v-card-title>
         <v-combobox
           v-model="selectKategorie"
           :items="itemsKategorie"
@@ -34,25 +35,37 @@
 
       </v-navigation-drawer>
 
+
+
     <main>
-        
+      <v-card rounded="0">
+
+        <v-row class="ma-5">
+           <v-col>
+               <h2>Wertevergleich</h2>
+               <v-card-text>Im Folgenden können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden.
+                Fahren Sie zudem über einen Balken, um genauere Informationen zu erhalten. Dieses einführende Feature soll Ihnen helfen,
+                sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können. 
+                </v-card-text>
+           </v-col>
+         </v-row>
+
+         <v-row class="mx-15 my-3"> <!-- Added margin utility classes mx-5 and my-3 for horizontal and vertical spacing -->
+          <v-col>
+            <div class="bar-chart-container" id="bar">
             <BarChart
-                    ref="barChart"
-                   
-            >
-
-            </BarChart>
-      
+                  ref="barChart"
+                  :orte="this.selectOrte"
+                  :kategorie="this.selectKategorie"
+                  @kategorie="handleKategorie" 
+                  @orte="handleOrte" 
+            ></BarChart>
+          </div>
+          </v-col>
+         </v-row>
      
-
+      </v-card>
     </main>
-              <!--
-                :anzahl="this.anzahl"
-                   
-                   @kategorie="handleKategorie" 
-                   @orte="handleOrte" 
-                :orte="this.selectOrte"
-                   :kategorie="this.selectKategorie"-->
     
     </div>
 
@@ -70,7 +83,6 @@
                itemsOrte: ["hi"],
                selectKategorie: [],
                itemsKategorie: [],
-               anzahl:"2",
             }
         },
         methods:{
@@ -80,9 +92,35 @@
           handleOrte(data){
                 this.itemsOrte=data
             },
+          toggleSelectAll() {
+                if (this.selectAll === true) {
+                  this.selectOrte = []
+                } 
+                else {
+                  this.selectOrte = this.itemsOrte
+                }
+            }, 
 
         }
         
     }
 
 </script>
+
+<style>
+  h2{
+    text-align: center;
+    position: relative;
+    margin:auto;
+  }
+  h3{
+    text-align: center;
+  }
+  .bar-chart-container { /*so passt es auf normal großen Bildschirm */
+    max-width: 2000px; 
+    max-height: 650px; 
+    margin: 0 auto; /* Center the chart horizontally */ 
+  }
+  </style>
+
+

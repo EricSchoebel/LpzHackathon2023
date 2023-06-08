@@ -1,26 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router"
-// import EinzelneGruppe from "@/views/EinzelneGruppe"
 import HomeStart from "@/views/HomeStart"
-
-//Chat
-//import Vue from 'vue';
-//import VueRouter from 'vue-router';
-
-
 import WerteVergleich from "@/views/WerteVergleich"
 import ClusteringHere from "@/views/ClusteringHere"
 import AnomalieErkennung from "@/views/AnomalieErkennung"
-
-/*
-import MehrereGruppen from "@/views/MehrereGruppen"
-import LastSequenzen from "@/views/LastSequenzen"
-import GruppenBearbeiten from "@/views/GruppenBearbeiten"
-import Home from "@/views/Home"
-*/
-
-//Chat
-//Vue.use(VueRouter);
-
 
 const routes = [
     {

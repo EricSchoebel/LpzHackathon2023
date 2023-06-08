@@ -81,7 +81,7 @@
         let Durchschnittsalter = []
         let Elektroautos = []
         let Jugendquote = []
-        let KitaKinder = []
+        let KinderInTagesbetreuung = []
         let LebenszufriedenheitZufriedenheitsfaktor = []
         let PersönlichesEinkommen = []
         let Straftaten = []
@@ -93,7 +93,7 @@
         let ortsteil = []
 
         let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
-                "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+                "Jugendquote","KinderInTagesbetreuung", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
                 "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
                 "ZukunftsaussichtZufriedenheitsfaktor"]
         
@@ -121,7 +121,7 @@
           Durchschnittsalter.push(newData[b].Durchschnittsalter)
           Elektroautos.push(newData[b].Elektroautos)
           Jugendquote.push(newData[b].Jugendquote)
-          KitaKinder.push(newData[b].KitaKinder)
+          KinderInTagesbetreuung.push(newData[b].KinderInTagesbetreuung)
           LebenszufriedenheitZufriedenheitsfaktor.push(newData[b].LebenszufriedenheitZufriedenheitsfaktor)
           PersönlichesEinkommen.push(newData[b].PersönlichesEinkommen)
           Straftaten.push(newData[b].Straftaten)
@@ -132,7 +132,7 @@
           annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
 
-          //war vorher innerhalb noch .toString()
+
         }
 
 
@@ -141,8 +141,8 @@
         //console.log(Elektroautos)
         //console.log("Jugendquote:")
         //console.log(Jugendquote)
-        //console.log("KitaKinder:")
-        //console.log(KitaKinder)
+        //console.log("KinderInTagesbetreuung:")
+        //console.log(KinderInTagesbetreuung)
         //console.log(ortsteil)
         //let moin = this.kategorie
         //console.log(moin)
@@ -251,7 +251,7 @@
           const desired_kategorien = this.kategorie
 
           const kategorielist_standard =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
-                "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
+                "Jugendquote","KinderInTagesbetreuung", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
                 "Straftaten","WirtschaftlicheLageZufriedenheitsfaktor", "WohnviertelZufriedenheitsfaktor",
                 "ZukunftsaussichtZufriedenheitsfaktor"]
         
@@ -387,7 +387,7 @@
               display: true,
               title: {
                 display: true,
-                text: 'Zweit ausgewählte Kategorie'
+                text:'Zweit ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             }
