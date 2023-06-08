@@ -59,7 +59,7 @@ df_pivot = filtered4_data.pivot(index=['ortsteil_id','ortsteil'], columns='name'
 df_pivot = df_pivot.reset_index()
 
 #Renaming columns, left old, right new
-df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'KitaKinder',
+df_pivot = df_pivot.rename(columns={ 'Kinder insgesamt': 'KinderInTagesbetreuung',
                                      'Straftaten insgesamt': 'Straftaten',
                                      '   mit Elektromotor': 'Elektroautos',
                                      'Lebenszufriedenheit': 'LebenszufriedenheitZufriedenheitsfaktor',
