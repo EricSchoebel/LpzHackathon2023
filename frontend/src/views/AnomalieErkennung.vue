@@ -66,8 +66,8 @@
              <v-col>
                  <h2>Anomalieerkennung mittels Künstlicher Intelligenz</h2>
                  <v-card-text>Im Folgenden können gegebenenfalls auftretende Ausreißer in den Daten mittels Machine Learning algorithmisch identifiziert werden.<p></p>
-                  Es können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl allerdings mindestens vier betragen. <p></p>Für den Fall von <strong>zwei Kategorien</strong> kann das Ergebnis graphisch veranschaulicht werden.
-                  <p></p>"Normale" Ortsteile sind grün gefärbt, Ausreißer sind rot markiert.</v-card-text>
+                  Es können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl allerdings mindestens vier betragen. <p></p>Für den Fall von <strong>zwei Kategorien</strong> kann das Ergebnis graphisch veranschaulicht werden. Dabei können Sie über die Punkte fahren, um genauere Informationen zu erhalten.
+                  Ortsteile im "Normalbereich" sind grün gefärbt, Ausreißer sind rot markiert.</v-card-text>
              </v-col>
            </v-row>
           
@@ -79,7 +79,6 @@
   
            <v-row class="ma-5">
              <v-col>
-               <v-card class="BDiagramm" rounded="0" >
                 <div class="bubble-chart-container" id="bubble">
                <AnomalieChart
                      ref="bChart"
@@ -92,7 +91,6 @@
                      @annotliste="handleAnnotliste" 
                  ></AnomalieChart> 
                 </div>
-               </v-card>
              </v-col>
   
            </v-row>
@@ -140,12 +138,12 @@
         vielDimensional: false,
         annotListe: [],
         submittertwo: false,
-        outputliste: [["test","test2"],["paul","leo"]],
+        outputliste: [[],[]],
       }
     },
     methods:{
       handleKategorie(data){
-                  this.itemsKategorie=data
+                    this.itemsKategorie=data
               },
       handleOrte(data){
                   this.itemsOrte=data

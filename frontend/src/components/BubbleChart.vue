@@ -132,7 +132,7 @@
           annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
 
-          //war vorher innerhalb noch .toString()
+
         }
 
 

@@ -1,5 +1,15 @@
 <template>
-  <Bar :data="chartData" />
+  <Bar class="barchart"
+       
+       :options="chartOptions"
+       :id="chartId"
+       :dataset-id-key="datasetIdKey"
+       :plugins="plugins"
+       :css-classes="cssClasses"
+       :styles="styles"
+       :width="width"
+       :height="height"
+       :data="chartData" />
 </template>
 
 <script>
@@ -11,29 +21,71 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   name: 'BarChart',
   components: { Bar },
-  data() {
-    return {
-      chartData: {
-        labels: [ 'January', 'February', 'March'],
-        datasets: [
-          {
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [40, 20, 12]
-          }
-        ]
-      }
-    }
+
+  props: {
+    orte:{ 
+      type: Array,
+      default: null,
+    },
+    kategorie:{
+      type: Array,
+      default: null,
+    },
+    anzahl: {
+      type: String,
+      default: "2",
+    },
+    chartNumber:{
+      type: Number,
+      default: 1,
+    },
+    chartId: {
+      type: String,
+      default: 'bar-chart'
+    },
+    datasetIdKey: {
+      type: String,
+      default: 'label'
+    },
+    width: {
+      type: Number,
+      default: 1000
+    },
+    height: {
+      type: Number,
+      default: 1000,
+    },
+    cssClasses: {
+      default: '',
+      type: String
+    },
+    styles: {
+      type: Object,
+      default: () => {}
+    },
+    plugins: {
+      type: Object,
+      default: () => {}
+    },
+    
   },
+
   methods:{
     async loadData(){
 
       try {  
-            console.log("Komme 1")   
+            console.log("Komme 1")
+            /* Idee signifikant anders als bei CLustering und Anomalieerkennung:
+            Es gibt einen allgemeinen API-Call und im Frontend wird dann bloß ausgewählt was genutzt wird.
+            Bei Clustering wird mit Auswahl von Ortsteilen, Kategorien o. ä. der API-Call beeinflusst */   
             this.chartData =await (await fetch("http://127.0.0.1:5000/get/allData")).json();       
             console.log(this.chartData)
             console.log("Komme ich hier her?")
             this.updateDiagramm(this.chartData)
+            console.log("ortsteile asugewählt:")
+            console.log(this.orte)  // dat kommt erstmal an
+            console.log("kategorien asugewählt:")
+            console.log(this.kategorie)
 
 
           } catch (e) {
@@ -71,8 +123,7 @@ export default {
               let WirtschaftlicheLageZufriedenheitsfaktor = []
               let WohnviertelZufriedenheitsfaktor = []
               let ZukunftsaussichtZufriedenheitsfaktor = []
-              let ortsteil = [] //ist quasi rechnerName
-              let annot = []
+              let ortsteil = [] 
 
               let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
               "Jugendquote","KitaKinder", "LebenszufriedenheitZufriedenheitsfaktor","PersönlichesEinkommen",
@@ -112,7 +163,7 @@ export default {
                 WohnviertelZufriedenheitsfaktor.push(newData[b].WohnviertelZufriedenheitsfaktor)
                 ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
             
-                annot.push(newData[b].label) //anotation
+                //annot.push(newData[b].label) //anotation
                 ortsteil.push(newData[b].Ortsteil)
 
                 //war vorher innerhalb noch .toString()
@@ -202,12 +253,42 @@ export default {
                 },
               ]
             }
+
+            /* HIER HIN FOR ANGEHAKTE KATEGORIE LABEL ANZEIGEN ODER NICHT */
+            //setzt das dataset.hidden auf den gegenteiligen Wahrheitswert des Vorkommens in this.kategorie-Prop
+            this.chartData.datasets.forEach((dataset) => {dataset.hidden = !this.kategorie.includes(dataset.label);}); 
+
+
             this.$emit("orte", ortsteillist)
             this.$emit("kategorie", kategorielist)
 
   },
     
   },
+
+  watch:{ 
+      orte:function(){
+        this.loadData()
+      },
+      kategorie:function(){
+        this.loadData()
+      },
+ 
+    },
+
+  data() {
+    return {
+      chartData: {
+        //labels: [ 'January', 'February', 'March'],
+        datasets: []
+      },
+   
+
+
+
+    }
+  },
+  //lädt die Funktion für die Daten beim ersten Aufruf (des Reiters)
   async mounted(){
     await this.loadData()
   }
