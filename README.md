@@ -28,7 +28,7 @@ Unter "Anomalieerkennung" können Ausreißer in den Daten algorithmisch identifi
 
 Das *Backend* wurde in Python mithilfe von Flask entwickelt. Neben der Vorbereitung des Datensatzes werden hier insbesondere die Machine-Learning-Algorithmen der Scikit-learn Bibliothek ausgeführt. Über eine API wird das Ergebnis dem Frontend zur Verfügung gestellt. Für das *Frontend* wurde Vue.js 3 mit Vuetify 3 verwendet.
 
-Zum Starten des Programms im Backend den Server über Ausführen von flask.py starten. Dann im Terminal in den Frontend-Ordner wechseln und über "npm run serve" das Frontend ausführen.
+Zum Starten des Programms im Backend den Server über Ausführen von flask.py starten. Dann im Terminal in den Frontend-Ordner wechseln und über "npm run serve" das Frontend ausführen. Annahme: die erforderlichen Installationen wurden zuvor ausgeführt.
 
 
 
