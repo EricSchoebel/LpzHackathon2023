@@ -387,7 +387,7 @@
               display: true,
               title: {
                 display: true,
-                text: 'Zweit ausgewählte Kategorie'
+                text:'Zweit ausgewählte Kategorie'
               },
               //suggestedMin: 0,
             }
