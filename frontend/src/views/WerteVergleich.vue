@@ -118,7 +118,7 @@
   }
   .bar-chart-container { /*so passt es auf normal großen Bildschirm */
     max-width: 2000px; 
-    max-height: 730px; 
+    max-height: 650px; 
     margin: 0 auto; /* Center the chart horizontally */ 
   }
   </style>

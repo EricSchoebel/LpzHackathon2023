@@ -169,15 +169,34 @@ export default {
                 //war vorher innerhalb noch .toString()
               }
 
+              /*hilft binarylist (mit 1 wenn Ortsteil selected) ? */
+              const desired_ortsteile = this.orte
+              const ortsteillist_standard = ortsteillist
+              const ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
+              console.log("ortsteileBinaryList:")
+              console.log(ortsteileBinaryList)
+
+              //FALSCH const filteredOrtsteil = ortsteil.filter((_, index) => ortsteileBinaryList[index] === 1);
+              //const filteredOrtsteil = ortsteil.map((el, index) => (ortsteileBinaryList[index] === 1 ? el : null));
+              //FIXME HIER WIRD NOCH DAS FALSCH ANGEZEIGT!
+
+              console.log(typeof(ortsteil))
+              /*Ortsteil einkürzen auf das was angezeigt werden soll */
+
+
+
+
               console.log("Elektroautos:")
               console.log(Elektroautos)
               console.log("Jugendquote:")
               console.log(Jugendquote)
               console.log("KinderInTagesbetreuung:")
               console.log(KinderInTagesbetreuung)
+
+
             
             this.chartData = {//setzt die Daten des Diagramms auf bestimmte Werte
-              labels: ortsteil, //das ist meine x-Achse
+              labels: filteredOrtsteil, //das ist meine x-Achse
               datasets: [ //das sind meine y-Achsen
                 { 
                   label: "Altenquote",
@@ -282,6 +301,14 @@ export default {
         //labels: [ 'January', 'February', 'March'],
         datasets: []
       },
+      chartOptions: {
+        plugins: {
+          legend:{
+            display: false
+          },
+        },
+      },
+
    
 
 
