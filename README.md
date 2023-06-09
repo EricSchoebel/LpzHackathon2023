@@ -31,5 +31,7 @@ Das *Backend* wurde in Python mithilfe von Flask entwickelt. Neben der Vorbereit
 Zum Starten des Programms im Backend den Server über Ausführen von flask.py starten. Dann im Terminal in den Frontend-Ordner wechseln und über "npm run serve" das Frontend ausführen. Annahme: die erforderlichen Installationen wurden zuvor ausgeführt.
 Das Backend behebt Cross-Origin-Errors für Anfragen von localhost:8080. Zur Freigabe von anderen Adressen kann die notwendige Anpassung in flaskapp.py getroffen werden.
 
+Um einen Eindruck von der Webanwendung zu bekommen, können alternativ auch Abzüge der Benutzeroberfläche im Screenshot-Ordner betrachtet werden.
+
 
 
