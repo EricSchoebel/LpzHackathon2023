@@ -1,6 +1,5 @@
 <template>
     <Bubble class="bubblechart"
-          
           :options="chartOptions"
           :id="chartId"
           :dataset-id-key="datasetIdKey"
