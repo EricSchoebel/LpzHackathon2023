@@ -129,7 +129,6 @@
           annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
 
-
         }
 
         //at first data for bubble chart is empty
