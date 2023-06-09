@@ -6,7 +6,7 @@
       v-model="drawer"
       >   
 
-      <v-card-title>Ortsteile auswählen:</v-card-title>
+        <v-card-title>Ortsteile auswählen:</v-card-title>
         <v-combobox
           v-model="selectOrte"
           :items="itemsOrte"
@@ -19,6 +19,7 @@
                     v-model="selectAll"
                     label="alle auswählen"
                     @click ="toggleSelectAll"
+                    class="pl-4 mb-n6"
                   ></v-checkbox>
                   </template>
         </v-combobox>
@@ -32,7 +33,6 @@
           chips
         ></v-combobox>
 
-
       </v-navigation-drawer>
 
 
@@ -43,7 +43,7 @@
         <v-row class="ma-5">
            <v-col>
                <h2>Wertevergleich</h2>
-               <v-card-text>Im Folgenden können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden.
+               <v-card-text>Im Folgenden können gewählte Ortsteile hinsichtlich bestimmter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden.
                 Fahren Sie zudem über einen Balken, um genauere Informationen zu erhalten. Dieses einführende Feature soll Ihnen helfen,
                 sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können. 
                 </v-card-text>
@@ -80,7 +80,7 @@
             return {
                drawer:true,
                selectOrte: [],
-               itemsOrte: ["hi"],
+               itemsOrte: [],
                selectKategorie: [],
                itemsKategorie: [],
             }

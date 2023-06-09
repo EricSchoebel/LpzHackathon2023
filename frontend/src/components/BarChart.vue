@@ -1,6 +1,5 @@
 <template>
-  <Bar class="barchart"
-       
+  <Bar class="barchart"  
        :options="chartOptions"
        :id="chartId"
        :dataset-id-key="datasetIdKey"
@@ -92,7 +91,7 @@ export default {
             let ortsteileBinaryString = ortsteileBinaryList.join('');
 
             /* Idee: Hier wird API-Call nur durch Auswahl von Ortsteilen beeinflusst.
-             Bei Clustering wird mit Auswahl von Ortsteilen, Kategorien o. ä. der API-Call beeinflusst.
+             Bei Clustering wird bspw. mit Auswahl von Ortsteilen, Kategorien o. ä. der API-Call beeinflusst.
               */   
             this.chartData =await (await fetch(
               "http://127.0.0.1:5000/get/specificOrtsteileData?"

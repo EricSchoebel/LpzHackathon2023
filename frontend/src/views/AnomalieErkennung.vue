@@ -1,4 +1,3 @@
-
 <template>
     <div>
       <v-navigation-drawer
@@ -22,6 +21,7 @@
                     v-model="selectAll"
                     label="alle auswählen"
                     @click ="toggleSelectAll"
+                    class="pl-4 mb-n6"
                   ></v-checkbox>
                   </template>
           </v-combobox>
@@ -46,22 +46,14 @@
           >aktualisieren</v-btn>
         <!--light orange: #FFDAB9-->
   
-            
-  
-          
       </v-navigation-drawer>
-      
-  
+    
       <main>
       
-      
-      
-      <v-card rounded="0">
+        <v-card rounded="0">
         
           <v-divider></v-divider>
-  
-          
-        <!-- BubbleChart Diagramm -->
+          <!-- BubbleChart Diagramm -->
            <v-row class="ma-5">
              <v-col>
                  <h2>Anomalieerkennung mittels Künstlicher Intelligenz</h2>
@@ -70,12 +62,6 @@
                   Ortsteile im "Normalbereich" sind grün gefärbt, Ausreißer sind rot markiert.</v-card-text>
              </v-col>
            </v-row>
-          
-           <!-- 
-           <div v-if="this.selectKategorie.length != 2">
-              <p>Text Length of itemsKategorie: {{ this.selectKategorie.length }}</p>
-            </div>
-          -->
   
            <v-row class="ma-5">
              <v-col>
@@ -83,7 +69,6 @@
                <AnomalieChart
                      ref="bChart"
                      :submittertwo="this.submittertwo"
-                     :anzahl="this.anzahl"
                      :orte="this.selectOrte"
                      :kategorie="this.selectKategorie"
                      @kategorie="handleKategorie" 
@@ -92,9 +77,7 @@
                  ></AnomalieChart> 
                 </div>
              </v-col>
-  
            </v-row>
-
 
            <v-row>
           <v-col>
@@ -111,12 +94,11 @@
                         </div>
                       </div>
             </div>
-
           </v-col>
          </v-row>
   
   
-      </v-card>
+        </v-card>
       </main>
   
     </div>
@@ -131,10 +113,9 @@
       return{
         drawer:true,
         selectOrte: [],
-        itemsOrte: ["hi"],
+        itemsOrte: [],
         selectKategorie: [],
         itemsKategorie: [],
-        anzahl:"3",
         vielDimensional: false,
         annotListe: [],
         submittertwo: false,

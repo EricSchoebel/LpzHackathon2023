@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from flask import Blueprint, request, jsonify
 from api_services import *
 
 api_controller = Blueprint(__name__, "api_controller") #initialize blueprint
 
 #---for Wertevergleich
-@api_controller.route("/get/allData")
+@api_controller.route("/get/allData") # get entire data for testing
 def get_all_data():
     return jsonify(dataframe_to_dict(clean_df))
 

@@ -11,13 +11,13 @@
 
   <main>
     <div class="image-container">
-    <img
-      :src="require('@/assets/NeuesRathausDrei.jpg')"
-      alt="Foto der Stadt Leipzig"
-      class="image"
-    >
-  </div>
-  <div class="caption">Foto: © Stadt Leipzig</div>
+      <img
+        :src="require('@/assets/NeuesRathausDrei.jpg')"
+        alt="Foto der Stadt Leipzig"
+        class="image"
+      >
+    </div>
+    <div class="caption">Foto: © Stadt Leipzig</div>
 
   </main>
   
