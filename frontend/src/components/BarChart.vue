@@ -159,7 +159,6 @@ export default {
                 ZukunftsaussichtZufriedenheitsfaktor.push(newData[b].ZukunftsaussichtZufriedenheitsfaktor)
 
                 ortsteil.push(newData[b].Ortsteil)
-
               }
             
             this.chartData = {//setzt die Daten des Diagramms auf bestimmte Werte

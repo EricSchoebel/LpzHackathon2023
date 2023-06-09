@@ -107,7 +107,6 @@
 
         //put API-Data into variables 
         for(b in newData){
-          //console.log("nun")
           Altenquote.push(newData[b].Altenquote)
           DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
           Durchschnittsalter.push(newData[b].Durchschnittsalter)
