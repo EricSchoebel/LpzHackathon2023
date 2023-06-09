@@ -41,7 +41,7 @@
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>KI-Analysetool für die Stadt Leipzig</v-toolbar-title>
+      <v-toolbar-title>MIRA - das KI-Analysetool für die Stadt Leipzig</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
