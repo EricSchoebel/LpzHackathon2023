@@ -6,7 +6,7 @@ By Eric Schöbel
 
 This project was created as part of the Leipzig Open Data Hackathon 2023. In response to the call initiated by the Office of Statistics and Elections of the City of Leipzig, Topic 1: "Artificial Intelligence for Urban Development" was chosen.
 
-The project developed "MIRA" (Japanese for "mirror") is an AI analysis tool for the city of Leipzig. Based on unsupervised learning machine learning algorithms, real publicly available data for the Leipzig city area for the year 2021 can be evaluated live by the user. The web application program offers features for descriptive value comparison, clustering, and anomaly detection.
+The project developed "MIRA" (Japanese for "mirror") is an AI analysis tool for the city of Leipzig. Based on unsupervised learning machine learning algorithms, real publicly available data for the Leipzig city area for the year 2021 can be evaluated live by the user. The web application program offers features for descriptive value comparison, clustering and anomaly detection.
 
 **Features**
 
