@@ -18,6 +18,7 @@
                     v-model="selectAll"
                     label="alle auswählen"
                     @click ="toggleSelectAll"
+                    class="pl-4 mb-n6"
                   ></v-checkbox>
                   </template>
         </v-combobox>
@@ -34,16 +35,11 @@
                    ]"
           
         ></v-combobox>
-        <!--funktioniert noch nicht: :rules="[
-                       v=> v>=2 || 'mindestens zwei Kategorien auswählen'
-                   ]"-->
-
 
         <v-card-title>Clusteranzahl</v-card-title>
         <v-text-field
                    v-model="anzahl"
                    :rules="[
-                       //v=> v<11 || 'Die Anzahl muss 10 oder kleiner sein',
                        v=> v>0 || 'Anzahl muss größer 0 sein'
                    ]"
                    label="Anzahl"
@@ -85,12 +81,6 @@
                 <p>Bei <strong>zwei Kategorien</strong> können Sie das Ergebnis graphisch betrachten. Dabei können Sie über die Punkte fahren, um genauere Informationen zu erhalten. Generell darf die Clusteranzahl die Ortsteilanzahl nicht übersteigen.</p></v-card-text>
            </v-col>
          </v-row>
-        
-         <!-- 
-         <div v-if="this.selectKategorie.length != 2">
-            <p>Text Length of itemsKategorie: {{ this.selectKategorie.length }}</p>
-          </div>
-        -->
 
          <v-row class="ma-5">
            <v-col>
@@ -135,14 +125,13 @@
 
 <script>
 import BubbleChart from "@/components/BubbleChart";
-//import TestZwei from "@/components/TestZwei";
 export default {
   components: { BubbleChart },
   data(){
     return{
       drawer:true,
       selectOrte: [],
-      itemsOrte: ["hi"],
+      itemsOrte: [],
       selectKategorie: [],
       itemsKategorie: [],
       anzahl:"2",
@@ -151,7 +140,7 @@ export default {
       selectAll: false,
       optimierer: false,
       test: false,
-      outputliste: [["test","test2"],["paul","leo"]],
+      outputliste: [["test","test2"],["test4","test5"]],
       submitter: false,
     }
   },

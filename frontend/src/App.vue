@@ -1,7 +1,6 @@
 <template>
   <v-app id="inspire">
 
-
     <!--Navigation-Drawer-Links-->
     <v-navigation-drawer
         v-model="drawer"
@@ -56,13 +55,6 @@
 import { useTheme } from 'vuetify';
 import '@mdi/font/css/materialdesignicons.css'
 import { RouterView } from "vue-router";
-
-//import Vue from 'vue';
-//import VueRouter from 'vue-router';
-//Vue.use(VueRouter);
-//import { useRouter } from 'vue-router'
-//import router from './router/index.js';
-
 
 export default {
   components: {

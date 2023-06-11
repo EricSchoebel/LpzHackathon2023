@@ -1,6 +1,5 @@
 <template>
     <Bubble class="bubblechart"
-          
           :options="chartOptions"
           :id="chartId"
           :dataset-id-key="datasetIdKey"
@@ -26,10 +25,6 @@
       chartId: {
         type: String,
         default: 'anomalie-chart'
-      },
-      anzahl: {
-        type: String,
-        default: "3",
       },
       orte:{ 
         type: Array,
@@ -70,7 +65,6 @@
       //aktualisiert das Diagramm
       updateDiagramm(newData){
 
-      
         let b;
         let x;
 
@@ -87,7 +81,7 @@
         let WohnviertelZufriedenheitsfaktor = []
         let ZukunftsaussichtZufriedenheitsfaktor = []
 
-        let annot = [] //labels?
+        let annot = [] //labels
         let ortsteil = []
 
         let kategorielist =["Altenquote","DurchschnittlicheHaushaltsgröße","Durchschnittsalter","Elektroautos",
@@ -113,7 +107,6 @@
 
         //put API-Data into variables 
         for(b in newData){
-          //console.log("nun")
           Altenquote.push(newData[b].Altenquote)
           DurchschnittlicheHaushaltsgröße.push(newData[b].DurchschnittlicheHaushaltsgröße)
           Durchschnittsalter.push(newData[b].Durchschnittsalter)
@@ -129,23 +122,8 @@
       
           annot.push(newData[b].label) //anotation
           ortsteil.push(newData[b].Ortsteil)
-
-          //war vorher innerhalb noch .toString()
         }
 
-
-
-        console.log("Elektroautos:")
-        console.log(Elektroautos)
-        console.log("Jugendquote:")
-        console.log(Jugendquote)
-        console.log("KinderInTagesbetreuung:")
-        console.log(KinderInTagesbetreuung)
-        //console.log(ortsteil)
-        //let moin = this.kategorie
-        //console.log(moin)
-
-        //at first data for bubble chart is empty
         this.chartData = {
           datasets:[]
         }
@@ -166,7 +144,7 @@
                 label: ortsteil[x], //point's identifier in the diagramm
                 backgroundColor: this.colors[annot[x]], //real label/anotation
                 data:[
-                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
+                  {
                     x:(eval(firstCateg))[x],
                     y:(eval(secondCateg))[x], 
                     r:10, // point's radius
@@ -174,66 +152,12 @@
                 ]
               }
           )
+        }  
         }
-          
-        }
-        else{
-          //nur Text anzeigen
-          let ende = (this.kategorie).length
-          //let numberList = [];
-          for (let i = 1; i <= ende; i++) {
-              
-
-
-            console.error("a")
-
-
-
-            
-          } 
-          //console.log(numberList);
-          
-          
-          
-          
-          //let firstCateg = this.kategorie[0]
-          //let secondCateg = this.kategorie[1]
-          //console.log("else, first:")
-          //console.log(firstCateg)
-          //console.log("else, second:")
-          //console.log(secondCateg)
-
-          /*
-          for (x in ortsteil){
-          this.chartData.datasets.push(
-              {  
-                label: ortsteil[x], //point's identifier in the diagramm
-                backgroundColor: this.colors[annot[x]], //real label/anotation
-                data:[
-                  { //FIXME das Problem ist noch, du willst ja genau die KAtegorie die ausgewählt ist, machst mit window[firstCateg]
-                    x:(window[firstCateg])[x], //hier stand vorher sowas wie  x:elektroautos[x]
-                    y:(window[secondCateg])[x], 
-                    r:10, // point's radius
-                  }
-                ]
-              }
-          )
-          }
-          */
-
-
-        }
-
-
-
-      
-         
-       // mit eigenen Werten testen
       
        this.$emit("orte", ortsteillist)
        this.$emit("kategorie", kategorielist) //first argument: event name ; second argument: payload
        this.$emit("annotliste", annot)
-
 
       },
       
@@ -242,7 +166,6 @@
         this.loaded = false
         try {
 
-          //HIER muss der spezifische API-call hin für die ausgewählten Ortsteile und Kategorien
           let desired_ortsteile = this.orte
           let desired_kategorien = this.kategorie
 
@@ -270,31 +193,12 @@
           let ortsteileBinaryList = ortsteillist_standard.map(u => desired_ortsteile.includes(u) ? 1 : 0);
           let kategorienBinaryList = kategorielist_standard.map(p => desired_kategorien.includes(p) ? 1 : 0);
 
-          //const clusteranzahl = this.anzahl
-
-          /* Testing
-          let ortsteileBinaryList = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-                                    , 1, 1, 1, 0, 1, 0, 0, 0, 0, 0,
-                                     0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 
-                                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-                                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                     0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
-          let kategorienBinaryList = [1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
-          */
-
           let ortsteileBinaryString = ortsteileBinaryList.join('');
           let kategorienBinaryString = kategorienBinaryList.join('');
 
-
-          //needs to deliver which categories and how many clusters (or)
           this.bubbleChartData = await (await fetch(
-            //"http://127.0.0.1:5000/get/kmeansByTimespan?clusteranzahl=" + this.anzahl)).json();
-            //"http://127.0.0.1:5000/get/kmeansAllDataTwoClusters")).json()
             "http://127.0.0.1:5000/get/lof?ortsteile_string="+ortsteileBinaryString
             +"&kategorien_string="+kategorienBinaryString)).json(); 
-            //console.log(this.bubbleChartData)
-            //Test: http://127.0.0.1:5000/get/kmeansWithk?clusteranzahl=3&ortsteile_string=111111111111101000000000000101111111111100000000000000000011111&kategorien_string=111111111111
-          
           this.updateDiagramm(this.bubbleChartData)
           this.loaded = true
         }catch (e){
@@ -302,21 +206,7 @@
         }
       },
     },
-    watch:{ //läuft die ganze Zeit
-      //prüft, ob sich der Anfang ändert
-     /*
-      anfang:function(){
-        this.loadData()
-      },
-      //prüft, ob sich das Ende ändert
-      ende:function(){
-        this.loadData()
-      },
-      */
-      //checks change in anzahl and calls if any loadData()
-      anzahl:function(){
-        this.loadData()
-      },
+    watch:{
       orte:function(){
         this.loadData()
       },
