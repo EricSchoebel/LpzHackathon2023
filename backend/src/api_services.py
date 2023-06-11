@@ -1,4 +1,4 @@
-# in here goes the acutal business logic / model
+# Here the acutal business logic / model
 # -> functions that you call from the api_controller
 
 from sklearn.cluster import KMeans
@@ -6,7 +6,6 @@ from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 from preparation import df_pivot
 from sklearn.neighbors import LocalOutlierFactor
-import pandas as pd
 
 clean_df = df_pivot
 
@@ -44,7 +43,7 @@ first two categories are just Ortsteil_ID and Ortsteil. Then:
 [Altenquote, DurchschnittlicheHaushaltsgröße, Durchschnittsalter, Elektroautos, Jugendquote, KitaKinder,
  LebenszufriedenheitZufriedenheitsfaktor, PersönlichesEinkommen, Straftaten,
   WirtschaftlicheLageZufriedenheitsfaktor, WohnviertelZufriedenheitsfaktor, ZukunftsaussichtZufriedenheitsfaktor]
-  
+ -> 2 + 12 = 14 
 """
 
 def kmeansWithK(k, included_cols, dataframe):
@@ -131,7 +130,6 @@ def detectOutliersLOF(included_cols, dataframe):
         # Generate labels (1 for outliers, 0 for inliers)
         labels = [1 if score < threshold else 0 for score in outlier_scores]
 
-        #return label_adder(dataframe, labels)
         return labels
 
 

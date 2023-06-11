@@ -14,7 +14,7 @@ Im Allgemeinen wird als Grundlage ein Datensatz für das Jahr 2021 erstellt, bei
 
 1. Wertevergleich
 
-Unter "Wertevergleich" können gewählte Ortsteile hinsichtlich gewählter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden. Dieses einführende Feature dient dem Zweck, sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können.
+Unter "Wertevergleich" können gewählte Ortsteile hinsichtlich bestimmter Kategorien in einem Balkendiagramm graphisch veranschaulicht werden. Dieses einführende Feature dient dem Zweck, sich einen Überblick über die Daten zu verschaffen und deskriptive Vergleiche ziehen zu können.
 
 2. Clustering
 
@@ -22,13 +22,16 @@ Unter "Clustering" kann analysiert werden, wo sich Ortsteile gemäß gewissen Ka
 
 3. Anomalieerkennung
 
-Unter "Anomalieerkennung" können Ausreißer in den Daten algorithmisch identifiziert werden. Wie zuvor können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl mindestens vier betragen. Für den Fall von zwei Kategorien kann das Ergebnis wieder graphisch veranschaulicht werden. Der zugrunde liegende Algorithmus ist Local Outlier Factor (LOF) aus dem Bereich der Anomaly Detection.
+Unter "Anomalieerkennung" können Ausreißer in den Daten algorithmisch identifiziert werden. Wie zuvor können Ortsteile und Kategorien gewählt werden, für erstere muss die Anzahl mindestens vier betragen. Für den Fall von zwei Kategorien kann das Ergebnis wieder graphisch veranschaulicht werden. Andernfalls erfolgt eine textliche Ausgabe. Der zugrunde liegende Algorithmus ist Local Outlier Factor (LOF) aus dem Bereich der Anomaly Detection.
 
 **Technisches**
 
 Das *Backend* wurde in Python mithilfe von Flask entwickelt. Neben der Vorbereitung des Datensatzes werden hier insbesondere die Machine-Learning-Algorithmen der Scikit-learn Bibliothek ausgeführt. Über eine API wird das Ergebnis dem Frontend zur Verfügung gestellt. Für das *Frontend* wurde Vue.js 3 mit Vuetify 3 verwendet.
 
 Zum Starten des Programms im Backend den Server über Ausführen von flask.py starten. Dann im Terminal in den Frontend-Ordner wechseln und über "npm run serve" das Frontend ausführen. Annahme: die erforderlichen Installationen wurden zuvor ausgeführt.
+Das Backend behebt Cross-Origin-Errors für Anfragen von localhost:8080. Zur Freigabe von anderen Adressen kann die notwendige Anpassung in flaskapp.py getroffen werden.
+
+Um einen Eindruck von der Webanwendung zu bekommen, können alternativ auch Abzüge der Benutzeroberfläche im Screenshot-Ordner betrachtet werden.
 
 
 

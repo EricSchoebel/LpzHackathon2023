@@ -2,8 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from api_controller import api_controller
 
-
-app = Flask(__name__, template_folder='../templates') #initialize application
+app = Flask(__name__) #initialize application
 app.config.from_object(__name__)
 
 #Important against Cross-Origin-Error:
