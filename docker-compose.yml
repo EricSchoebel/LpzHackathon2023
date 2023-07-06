@@ -1,0 +1,57 @@
+version: '3'
+services:  #services listet die ganzen container auf
+
+
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: app
+    ports:
+      - 5000:5000
+    volumes:
+      - ./backend:/app
+
+
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+#    networks:
+#      - example
+
+#  backend:
+#    container_name: backend_prod
+#    image: ericschoebel/swt-backend
+#    ports:
+#      - 8081:8080
+#    depends on:
+#      - "postgresdb"
+#    command:
+#      - run
+#      - --cors
+#      - "*"
+#    restart: unless-stopped
+#    networks:
+#      - example
+
+#networks:
+#  example
+#  proxy:
+#    container_name: proxy
+#    image: ericschoebel/swt-proxy
+#    hostname: proxy
+#    ports:
+#      - "3002:80"
+#    depends on:
+#      - "backend"
+#      - "frontend"
+#    restart: unless-stopped
+
+volumes:
+  app:
