@@ -12,15 +12,13 @@ services:  #services listet die ganzen container auf
     volumes:
       - ./backend:/app
 
-
-
   frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     container_name: frontend
     ports:
-      - "8080:80"
+      - "8080:8080"
     restart: unless-stopped
 #    networks:
 #      - example
