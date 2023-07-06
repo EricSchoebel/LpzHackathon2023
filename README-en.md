@@ -28,8 +28,7 @@ Under "Anomaly Detection," outliers in the data can be algorithmically identifie
 
 The *backend* was developed in Python using Flask. In addition to dataset preparation, it primarily executes machine learning algorithms from the Scikit-learn library. The results are provided to the frontend through an API. The *frontend* was built using Vue.js 3 with Vuetify 3.
 
-To start the program in the backend, run the server by executing flask.py. Then, navigate to the frontend folder in the terminal and execute the frontend by running "npm run serve". Note that the necessary installations should be done beforehand.
-The backend resolves cross-origin errors for requests from localhost:8080. To allow other addresses, the necessary adjustment can be made in flaskapp.py.
+To start the program, bring up the Docker containers in the terminal using "docker-compose up -d" by referring to the docker-compose.yml file. Then, open your web browser and go to localhost:8080.
 
 To get an impression of the web application, screenshots of the user interface can be viewed in the screenshot folder.
 
