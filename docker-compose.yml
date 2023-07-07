@@ -1,5 +1,5 @@
 version: '3'
-services:  #services listet die ganzen container auf
+services:  #services listet die container auf
 
   app:
     build:
