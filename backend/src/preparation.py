@@ -4,7 +4,7 @@ import os
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Constructing the relative path to the JSON file
+# Constructing the relative path to the JSON files
 json_file_path_a = os.path.join(script_dir, '..', 'files', 'json_files', 'a.json')
 json_file_path_b = os.path.join(script_dir, '..', 'files', 'json_files', 'b.json')
 json_file_path_c = os.path.join(script_dir, '..', 'files', 'json_files', 'c.json')
