@@ -8,6 +8,8 @@ Das vorliegende Projekt entstand im Rahmen des Leipziger Open Data Hackathons 20
 
 Entwickelt wurde *"MIRA"* (japanisch für "Spiegel"), ein *KI-Analysetool für die Stadt Leipzig*. Auf Basis von Machine-Learning-Algorithmen aus dem Bereich Unsupervised Learning können reale, öffentlich verfügbare Daten für das Stadtgebiet Leipzig für das Jahr 2021 live durch den Nutzer ausgewertet werden. Das als Webanwendung konzipierte Programm bietet Features zu deskriptivem Wertevergleich, Clustering und Anomalieerkennung. 
 
+![GUI](screenshots/Anomalieerkennung_grafisch.png "GUI")
+
 **Features**
 
 Im Allgemeinen wird als Grundlage ein Datensatz für das Jahr 2021 erstellt, bei dem sich Informationen zu den 63 Leipziger Ortsteilen bezüglich 12 Kategorien, wie bspw. der Anzahl an Elektroautos oder die Anzahl der begangenen Straftaten, darlegen. Der Nutzer kann die für ihn relevanten Ortsteile und Kategorien auf der Website auswählen und erhält direkt die in Echtzeit berechneten Ergebnisse zurück, welche nach Belieben analysiert werden können. Datengrundlage bildete das Leipziger Informationssystem.
